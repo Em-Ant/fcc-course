@@ -11,6 +11,7 @@ The external libraries needed for almost every project are :
 * [Bootstrap](http://getbootstrap.com/)
 * [jQuery](https://jquery.com/)
 * [FontAwesome](http://fortawesome.github.io/Font-Awesome/)
+* Various fonts from [Google Fonts](https://www.google.com/fonts)
 
 and
 
