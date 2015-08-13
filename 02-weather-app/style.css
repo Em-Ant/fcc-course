@@ -1,0 +1,35 @@
+body{
+  background : #444 no-repeat center center fixed url('./img/pld_wh.GIF');
+}
+
+.weather{
+  background-color: rgba(20,20,20,0.5);
+  color : #eee;
+  padding: 40px;
+  margin: auto;
+  margin-top:180px;
+  display: none;
+  text-shadow: 2px 2px 0 #333;
+}
+
+#push{
+  position: absolute;
+  right:30px;
+  top: 30px;
+}
+
+.btn.custom{
+  background-color: rgba(20,20,20,0.4);
+  color: #eee;
+  -webkit-transition: all 0.5s; /* Safari */
+  transition: all 0.5s;
+}
+
+.btn.custom:hover{
+  background-color: rgba(40,40,40,1);
+}
+
+.btn.custom:active{
+  background-color: rgba(80,80,80,1);
+}
+

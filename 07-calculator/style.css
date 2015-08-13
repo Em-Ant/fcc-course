@@ -1,0 +1,66 @@
+@import url('http://fonts.googleapis.com/css?family=VT323|Pacifico|Nova+Mono');
+
+body{
+  font-family:'Nova Mono',monospace;
+}
+
+.btn {
+  width: 50px;
+  position:relative;
+  margin: 10px 5px;
+  text-align : center;
+  padding : 6px 0;
+  box-shadow : 2px 2px 2px black;
+  font-size: 1.7em;
+}
+
+.btn:active{
+  top:1px;
+}
+
+.double {
+  width: 117px;
+}
+
+
+.result {
+  position:relative;
+  height: 60px;
+  width: 250px;
+  margin: auto;
+  margin-bottom: 30px;
+  border: 2px solid #888;
+  border-radius: 7px;
+  background-color : #6F7558;
+}
+
+.result h2 {
+  width: 230px;
+  position : relative;
+  text-align : right;
+  font-family : 'VT323', monospace;
+  margin: 4px 8px auto auto;
+  font-size : 3em; 
+}
+
+.contour {
+  border: 2px solid #666;
+  border-radius: 25px;
+  padding: 20px;
+  padding-top: 40px;
+  width: 320px;
+  margin : 60px auto;
+  background-color:#444;
+  box-shadow : 5px 5px 2px #333;
+}
+
+h1.head {
+  font-family : 'Pacifico', sans;
+  margin-top: 40px;
+  font-size : 3.4em;
+  color : #555;
+}
+
+div.btns{
+  margin: 15px auto;
+}

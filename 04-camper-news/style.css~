@@ -1,0 +1,83 @@
+
+
+body{
+  background-color : #948C75;
+}
+
+.heading{
+  margin : 80px auto 50px auto;
+  color: #444;
+  padding : 20px;
+  padding-top : 50px;
+  border-top: solid 4px #444;
+  border-bottom: solid 4px #444;
+}
+
+h3.sub {
+  font-family : bangers,sans;
+  font-size : 3em;
+}
+
+
+.heading img{
+   width : 80%;
+   max-width : 600px;
+}
+a.element{
+  position:relative;
+  box-shadow:5px 5px 5px #333;
+  margin : 10px;
+  display:inline-block;
+  background-color: #E8E5E4;
+  color : #444;
+  transition: all 0.1s;
+}
+
+a.element:hover{
+  text-decoration:none;
+  background-color: white;
+  top:-5px;
+  box-shadow: 10px 10px 10px #333;
+}
+
+a.element .upvotes{
+  position:absolute;
+  display : block;
+  top : 15px;
+  right: -25px;
+  border-radius: 50%;
+  width:  50px;
+  height: 50px;
+  color: white;
+  box-shadow: 3px 3px 3px #333;
+  font-size : 1.2em;
+  background-color: #99B2B7;
+}
+
+a.element .up-nr{
+  margin:10px auto;
+}
+
+a.element:active{
+  text-decoration:none;
+  top: 0px;
+  box-shadow: 5px 5px 5px #333;
+}
+
+a.element img{
+  width : 100%;
+}
+
+a.element h3{
+  font-size : 1em;
+  padding : 5px;
+}
+
+a.element .author{
+  color: #D76E79;
+}
+
+a.element .headline{
+  font-size:1.2em;
+  padding: 10px 15px;
+}

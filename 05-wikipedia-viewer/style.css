@@ -1,0 +1,76 @@
+.main{
+  margin: 50px 0 30px 0;  
+  padding: 20px 30px 40px 30px;
+  border: 1px solid #aaa;
+  box-shadow: 5px 5px 5px #999;
+  background-color:#fff;
+}
+
+div.btn{
+  width:40px;
+  margin-bottom: 10px;
+}
+
+.main h2{
+  border: 1px solid #337AB7;
+  max-width:285px;
+  margin: 20px auto 30px auto;
+  padding:20px;
+  border-radius : 10px;
+}
+
+.ui-autocomplete{
+  width: 200px;
+}
+
+body{
+  background-color:#f7f7f7;
+}
+input{
+  width : 200px;
+  margin-bottom :10px;
+}
+
+.custom li{
+  position: relative;
+  border: 1px solid #aaa;
+  border-left: 4px solid #337AB7;
+  padding : 5px 20px;
+  margin :10px 0;
+  box-shadow: 5px 5px 2px #999;
+  background-color:#fff;
+  transition: top 0.1s;
+  transition: box-shadow 0.1s;
+  top : 0;
+  cursor: pointer;
+  cursor: hand;
+}
+
+.custom li.disabled{
+  cursor: auto;
+  color: #888;
+  background-color: #f7f7f7;
+}
+
+div#ajaxloader{
+  margin : 30px auto;
+}
+
+.custom li h3{
+  color: #337AB7;
+}
+.custom li.disabled h3{
+  color:#888;
+}
+
+
+.custom li:hover{
+  box-shadow: 8px 8px 10px #999;
+  top: -3px;
+  background-color: #fafafa;
+}
+
+.custom li:active{
+  box-shadow: 5px 5px 5px #999;
+  top:  0px;
+}
