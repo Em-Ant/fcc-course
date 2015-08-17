@@ -19,8 +19,13 @@ $(document).ready(function(){
     }).attr('src',pict);    
     $new_div.append($img);
     $new_div.append($('<h3 class="headline"></h3>').text(obj.headline));
-    var discussUrl = "http://www.freecodecamp.com/news/" + obj.storyLink.replace(" ","-");
-    $new_div.append($('<a href="'+discussUrl+'"><h3 class="comments">'+obj.comments.length+' comments</h3></a>').text(obj.comments.length+' comments'));
+    var discussUrl = "http://www.freecodecamp.com/news/" + obj.storyLink.replace(" ","-")
+    if(obj.comments){
+      var commStr = obj.comments.length+' comments';
+    }else{
+      commStr = 'go to discussion';
+    }
+    $new_div.append($('<a href="'+discussUrl+'"><h3 class="comments">'+commStr+'</h3></a>'));
     $new_div.append($('<h3 class="author">'+obj.author.username+'</h3>'));
     $new_div.append($('<div class="upvotes"><h3 class="up-nr">+'+obj.upVotes.length+'</h3></div>'));
     $where.append($new_div);
