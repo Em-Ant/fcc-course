@@ -13,8 +13,11 @@ var gameStatus = {};
 gameStatus.init = function(){
   this.strict = false;
   this.count = 0;
+  this.lastPush = $('#0');
 };
 
+gameStatus.init();
+  
 // create Oscillator node
 var oscillators = frequencies.map(function(frq){
   var osc = audioCtx.createOscillator();
@@ -29,6 +32,7 @@ var oscillators = frequencies.map(function(frq){
   // COLORS || AUDIO TEST
   $('.push').mousedown(function(){
     gameStatus.currPush = $(this);
+    gameStatus.lastPush = $(this);
     gameStatus.currPush.addClass('light');
     gameStatus.currOsc = oscillators[parseInt($(this).attr('id'))];
     gameStatus.currOsc.connect(gainNode);
@@ -46,17 +50,34 @@ var oscillators = frequencies.map(function(frq){
   });
   
   //ERROR SOUND TEST
-  function notifyError(){
+  function notifyError(pushObj){
     errOsc.connect(gainNode);
     errOsc.connect(audioCtx.destination);
+    pushObj.addClass('light');
     $('.push').removeClass('clickable').addClass('unclickable');
     setTimeout(function(){
       $('.push').removeClass('unclickable').addClass('clickable');
       errOsc.disconnect(gainNode);
       gainNode.disconnect(audioCtx.destination);
+      pushObj.removeClass('light');
     },1000);
     flashMessage('!!',2);
   };
+  
+  function notifyWin(){
+    $('.push').removeClass('clickable').addClass('unclickable');
+    var cnt = 0;
+    var intv = setInterval(function(){
+      gameStatus.lastPush.mousedown();
+      setTimeout(function(){gameStatus.lastPush.mouseup();},80);
+      cnt++;
+      if(cnt === 8){
+        clearInterval(intv);
+        $('.push').addClass('clickable').removeClass('unclickable');
+      }
+    },160);
+    flashMessage('**',2);
+  }
   
   function flashMessage(msg,times){
     $('.count').text(msg);
@@ -79,13 +100,14 @@ var oscillators = frequencies.map(function(frq){
   function toggleStrict(){
     $('#mode-led').toggleClass('led-on');
     gameStatus.strict = !gameStatus.strict;
+    notifyError(gameStatus.lastPush);
   }
   
   $('.sw-slot').click(function(){
     $('#pwr-sw').toggleClass('sw-on');
     if($('#pwr-sw').hasClass('sw-on')==false){
       gameStatus.init();
-      $('.count').text('00');
+      $('.count').text('--');
       $('.count').addClass('led-off');
       $('#mode-led').removeClass('led-on');
       $('.push').removeClass('clickable').addClass('unclickable');
@@ -94,7 +116,7 @@ var oscillators = frequencies.map(function(frq){
     }else{    
       $('.count').removeClass('led-off');
       $('.push').removeClass('unclickable').addClass('clickable');
-      $('#start').click(notifyError);  // TEMP for testing
+      $('#start').click(notifyWin);  // TEMP for testing
       $('#mode').click(toggleStrict);
     }     
   });
