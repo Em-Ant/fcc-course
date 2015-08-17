@@ -29,7 +29,9 @@ html, body, div, span, applet, object, iframe,
   user-select: none;
  }
 
-
+html{
+ background-image: url('./images/retina_wood.png'); /* from http://cdn.backgroundhost.com/backgrounds/subtlepatterns/ */
+}
 .inline{
   display: inline-block;
 }
@@ -70,7 +72,7 @@ html, body, div, span, applet, object, iframe,
   text-align: center;
   margin:auto;
   background-color:#333;
-  top:20px;
+  top:80px;
   box-shadow: 0px 0px 12px #222;
 }
 
