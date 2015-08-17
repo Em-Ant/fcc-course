@@ -109,6 +109,7 @@ $(document).ready(function(){
   // COLORS || AUDIO TEST
   $('.push').mousedown(function(){
     playGoodTone($(this).attr('id'));
+    gameStatus.lastPush = $(this);
   });
   
   $('*').mouseup(function(e){
