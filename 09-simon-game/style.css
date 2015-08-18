@@ -30,7 +30,7 @@ html, body, div, span, applet, object, iframe,
  }
 
 html{
- background-image: url('./images/retina_wood.png'); /* from http://cdn.backgroundhost.com/backgrounds/subtlepatterns/ */
+ background-image: url('http://cdn.backgroundhost.com/backgrounds/subtlepatterns/retina_wood.png');
 }
 .inline{
   display: inline-block;
@@ -214,11 +214,11 @@ html{
   background-color : #FC0102;
 }
 .red{
-  background-color : #c8131d;
+  background-color : #9f0f17;
 }
 
 .green{
-  background-color : #00CA5A;
+  background-color : #00a74a;
 }
 
 .yellow{
@@ -226,7 +226,7 @@ html{
 }
 
 .blue{
-  background-color : #0a56a5;
+  background-color : #094a8f;
 }
 
 .yellow.light{
