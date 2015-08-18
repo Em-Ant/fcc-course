@@ -22,6 +22,7 @@ $(document).ready(function(){
     this.tStepInd = 0;
     this.index = 0;
     this.count = 0;
+    this.lock = false;
   };
 
   // create Oscillators 
@@ -107,7 +108,6 @@ $(document).ready(function(){
       gameStatus.toHndl = setTimeout(stopGoodTones,80);
       cnt++;
       if(cnt === 8){
-        console.log('eeeeed');
         clearInterval(gameStatus.seqHndl);
       }
     },160);
@@ -142,12 +142,14 @@ $(document).ready(function(){
     gameStatus.index = 0;
     gameStatus.seqHndl = setInterval(function(){
       displayCount();
+      gameStatus.lock = true;
       playGoodTone(gameStatus.sequence[i]);
       gameStatus.toHndl = setTimeout(stopGoodTones,gameStatus.timeStep/2 - 10);
       i++;
       if(i === gameStatus.sequence.length){
         clearInterval(gameStatus.seqHndl);
         $('.push').removeClass('unclickable').addClass('clickable');
+        gameStatus.lock = false;
         gameStatus.toHndl = setTimeout(notifyError,5*gameStatus.timeStep);
       }
     },gameStatus.timeStep);
@@ -155,9 +157,8 @@ $(document).ready(function(){
     
   function addStep(){
         gameStatus.timeStep = setTimeStep(gameStatus.count++);
-        $('.push').removeClass('clickable').addClass('unclickable');
         gameStatus.sequence.push(Math.floor(Math.random()*4));
-        playSequence();
+        gameStatus.toHndl=setTimeout(playSequence,500);
   };
   
   function resetTimers(){
@@ -178,12 +179,14 @@ $(document).ready(function(){
       if(gameStatus.index < gameStatus.sequence.length){
         gameStatus.toHndl = setTimeout(notifyError,5*gameStatus.timeStep);
       }else if (gameStatus.index == 20){
-        $('.clickable').removeClass('clickable').addClass('unclickable');
+        $('.push').removeClass('clickable').addClass('unclickable');
         gameStatus.toHndl = setTimeout(notifyWin,gameStatus.timeStep);
       }else{
+        $('.push').removeClass('clickable').addClass('unclickable');
         addStep();
       }
     }else{
+      $('.push').removeClass('clickable').addClass('unclickable');
       notifyError(pushObj);
     }
   }
@@ -194,7 +197,8 @@ $(document).ready(function(){
   
   $('*').mouseup(function(e){
     e.stopPropagation();
-    stopGoodTones();
+    if(!gameStatus.lock)
+      stopGoodTones();
   });
   
   
