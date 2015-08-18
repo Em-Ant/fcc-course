@@ -35,11 +35,11 @@ $(document).ready(function(){
   });
 
   var gainNode = audioCtx.createGain();
+  gainNode.connect(audioCtx.destination);
   
   function playGoodTone(num){
     gameStatus.currOsc = oscillators[num];
     gameStatus.currOsc.connect(gainNode);
-    gainNode.connect(audioCtx.destination);
     gameStatus.currPush = $('#'+num);
     gameStatus.currPush.addClass('light');
   };
@@ -49,19 +49,18 @@ $(document).ready(function(){
       gameStatus.currPush.removeClass('light');
     if(gameStatus.currOsc)
       gameStatus.currOsc.disconnect(gainNode);
-    gainNode.disconnect(audioCtx.destination);
     gameStatus.currPush = undefined;
     gameStatus.currOsc = undefined;
   };
   
   function playErrTone(){
     errOsc.connect(gainNode);
-    errOsc.connect(audioCtx.destination);
   };
   
   function stopErrTone(){
+  try{
     errOsc.disconnect(gainNode);
-    gainNode.disconnect(audioCtx.destination);
+  }catch(err){};
   };
  
     function gameStart(){
