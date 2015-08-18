@@ -5,8 +5,8 @@ $(document).ready(function(){
   var frequencies = [329.63,261.63,220,164.81];
 
   var errOsc = audioCtx.createOscillator();
-  errOsc.type = 'square';
-  errOsc.frequency.value = 55;
+  errOsc.type = 'triangle';
+  errOsc.frequency.value = 110;
   errOsc.start();
 
   var gameStatus = {};
