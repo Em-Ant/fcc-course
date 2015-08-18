@@ -15,7 +15,7 @@ $(document).ready(function(){
     this.count = 0;
     this.lastPush = $('#0');
     //this.sequence = [];
-    this.seqHndl;
+    this.index = 0;
   };
 
   // create Oscillators 
@@ -74,11 +74,13 @@ $(document).ready(function(){
   function notifyWin(){
     $('.clickable').removeClass('clickable').addClass('unclickable');
     var cnt = 0;
+    var last = gameStatus.lastPush.attr('id');
     gameStatus.seqHndl = setInterval(function(){
-      gameStatus.lastPush.mousedown();
-      gameStatus.toHndl = setTimeout(function(){gameStatus.lastPush.mouseup();},80);
+      playGoodTone(last);
+      gameStatus.toHndl = setTimeout(stopGoodTones,80);
       cnt++;
       if(cnt === 8){
+        console.log('eeeeed');
         clearInterval(gameStatus.seqHndl);
         $('.unclickable').removeClass('unclickable').addClass('clickable');
       }
@@ -90,17 +92,17 @@ $(document).ready(function(){
     $('.count').text(msg);
     var lf = function(){
       $('.count').addClass('led-off');
-      gameStatus.toHndl = setTimeout(function(){
+      gameStatus.toHndlFl = setTimeout(function(){
         $('.count').removeClass('led-off');
       },250);
     };
     var cnt = 0;
     lf();
-    gameStatus.seqHndl = setInterval(function(){
+    gameStatus.flHndl = setInterval(function(){
       lf();
       cnt++;
       if(cnt === times)
-        clearInterval(gameStatus.seqHndl);
+        clearInterval(gameStatus.flHndl);
     },500)
   };
   
@@ -120,22 +122,43 @@ $(document).ready(function(){
   };
   
   function resetTimers(){
-     clearInterval(gameStatus.seqHndl);
-     clearTimeout(gameStatus.toHndl);
+    clearInterval(gameStatus.seqHndl);
+    clearInterval(gameStatus.flHndl);
+    clearTimeout(gameStatus.toHndl);
+    clearTimeout(gameStatus.toHndlFl);
   };
+  
+ 
+  
+  function pushColor(pushObj){
+    clearTimeout(gameStatus.toHndl);
+    var pushNr = pushObj.attr('id');
+    if( pushNr == gameStatus.sequence[gameStatus.index] && gameStatus.index < gameStatus.sequence.length){
+      playGoodTone(pushNr);
+      gameStatus.lastPush = pushObj;
+      gameStatus.index++;
+      if(gameStatus.index < gameStatus.sequence.length){
+        gameStatus.toHndl = setTimeout(notifyError,5*gameStatus.timeStep);
+      }else{
+        gameStatus.toHndl = setTimeout(notifyWin,gameStatus.timeStep);
+      }
+    }else{
+      notifyError(pushObj);
+    }
+  }
   
   /**
   * TEST MODE
   */
   
   
-  gameStatus.sequence = [0,3,2,3,2,1,1,3,2,1,3];
+  
+  gameStatus.sequence = [0,3,1,2];
   gameStatus.timeStep = 1000;
   
   // COLORS || AUDIO TEST
   $('.push').mousedown(function(){
-    playGoodTone($(this).attr('id'));
-    gameStatus.lastPush = $(this);
+    pushColor($(this));
   });
   
   $('*').mouseup(function(e){
@@ -149,7 +172,7 @@ $(document).ready(function(){
     gameStatus.strict = !gameStatus.strict;
     
     // AUDIO TEST
-    notifyError();
+    notifyWin();
   }
   
   $('.sw-slot').click(function(){
