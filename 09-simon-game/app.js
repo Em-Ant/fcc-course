@@ -14,6 +14,8 @@ $(document).ready(function(){
     this.strict = false;
     this.count = 0;
     this.lastPush = $('#0');
+    //this.sequence = [];
+    this.seqHndl;
   };
 
   // create Oscillators 
@@ -60,7 +62,7 @@ $(document).ready(function(){
     if(pushObj)
       pushObj.addClass('light');
     $('.clickable').removeClass('clickable').addClass('unclickable');
-    setTimeout(function(){
+    gameStatus.toHndl = setTimeout(function(){
       $('.unclickable').removeClass('unclickable').addClass('clickable');
       stopErrTone();
       if(pushObj)
@@ -72,12 +74,12 @@ $(document).ready(function(){
   function notifyWin(){
     $('.clickable').removeClass('clickable').addClass('unclickable');
     var cnt = 0;
-    var intv = setInterval(function(){
+    gameStatus.seqHndl = setInterval(function(){
       gameStatus.lastPush.mousedown();
-      setTimeout(function(){gameStatus.lastPush.mouseup();},80);
+      gameStatus.toHndl = setTimeout(function(){gameStatus.lastPush.mouseup();},80);
       cnt++;
       if(cnt === 8){
-        clearInterval(intv);
+        clearInterval(gameStatus.seqHndl);
         $('.unclickable').removeClass('unclickable').addClass('clickable');
       }
     },160);
@@ -88,23 +90,47 @@ $(document).ready(function(){
     $('.count').text(msg);
     var lf = function(){
       $('.count').addClass('led-off');
-      setTimeout(function(){
+      gameStatus.toHndl = setTimeout(function(){
         $('.count').removeClass('led-off');
       },250);
     };
     var cnt = 0;
     lf();
-    var intv = setInterval(function(){
+    gameStatus.seqHndl = setInterval(function(){
       lf();
       cnt++;
       if(cnt === times)
-        clearInterval(intv);
+        clearInterval(gameStatus.seqHndl);
     },500)
+  };
+  
+  function playSequence(){
+    $('.push').removeClass('clickable').addClass('unclickable');
+    var i = 0;
+    gameStatus.seqHndl = setInterval(function(){
+      playGoodTone(gameStatus.sequence[i]);
+      gameStatus.toHndl = setTimeout(stopGoodTones,gameStatus.timeStep/2 - 10);
+      i++;
+      if(i === gameStatus.sequence.length){
+        clearInterval(gameStatus.seqHndl);
+        $('.push').removeClass('unclickable').addClass('clickable');
+        gameStatus.toHndl = setTimeout(notifyError,5*gameStatus.timeStep);
+      }
+    },gameStatus.timeStep);
+  };
+  
+  function resetTimers(){
+     clearInterval(gameStatus.seqHndl);
+     clearTimeout(gameStatus.toHndl);
   };
   
   /**
   * TEST MODE
   */
+  
+  
+  gameStatus.sequence = [0,3,2,3,2,1,1,3,2,1,3];
+  gameStatus.timeStep = 1000;
   
   // COLORS || AUDIO TEST
   $('.push').mousedown(function(){
@@ -136,10 +162,13 @@ $(document).ready(function(){
       $('.push').removeClass('clickable').addClass('unclickable');
       $('#start').off('click'); 
       $('#mode').off('click');
+      resetTimers();
+      stopGoodTones();
+      stopErrTone();
     }else{    
       $('.count').removeClass('led-off');
       $('.push').removeClass('unclickable').addClass('clickable');
-      $('#start').click(notifyWin);  // Win testing
+      $('#start').click(playSequence);  // Seq testing
       $('#mode').click(toggleStrict); // Error testing
     }     
   });
