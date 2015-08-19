@@ -4,7 +4,8 @@ $(document).ready(function() {
   var new_quote = function() {
     $('#new').attr('disabled','disabled');
     $('#twt').attr('disabled','disabled');
-    $("#quote-area div").slideUp(500,function(){$('.loader').fadeIn();}).addClass('dead');
+    $("#quote-area div").addClass('dead').slideUp();
+    $('.loader').fadeIn();
     var $div;
     var q = $.ajax({
       url : "http://www.stands4.com/services/v2/quotes.php?uid=4203&tokenid=WlHjiz0FePRFOxH1&searchtype=RANDOM",
@@ -12,6 +13,7 @@ $(document).ready(function() {
         $div = $("<div></div>");
         var $xml = $($.parseXML(q.responseText));   
         $div.hide();
+        console.log('succ');
         $('.dead').remove();
         var quote = $xml.find("quote").text();
         var author = $xml.find("author").text()
@@ -41,7 +43,7 @@ $(document).ready(function() {
         $('#twt').removeAttr('disabled');
         $('.loader').fadeOut(function(){$div.slideDown(500);});     
       }
-    })
+    });
   };
   
   /* Bind click event on main btn, and load the first quote */
