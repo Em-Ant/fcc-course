@@ -8,7 +8,13 @@ $(document).ready(function(){
   errOsc.type = 'triangle';
   errOsc.frequency.value = 110;
   errOsc.start();
-
+  var errNode = audioCtx.createGain();
+  errOsc.connect(errNode);
+  errNode.gain.value = 0;
+  errNode.connect(audioCtx.destination);
+  
+  var ramp = 0.1;
+  
   var gameStatus = {};
   
   gameStatus.reset = function(){
@@ -34,12 +40,17 @@ $(document).ready(function(){
     return osc;
   });
 
-  var gainNode = audioCtx.createGain();
-  gainNode.connect(audioCtx.destination);
+  var gainNodes = oscillators.map(function(osc){
+    var g = audioCtx.createGain();
+    osc.connect(g);
+    g.connect(audioCtx.destination);
+    g.gain.value = 0;
+    return g;
+  }); 
+  
   
   function playGoodTone(num){
-    gameStatus.currOsc = oscillators[num];
-    gameStatus.currOsc.connect(gainNode);
+    gainNodes[num].gain.linearRampToValueAtTime(0.8, audioCtx.currentTime + ramp);
     gameStatus.currPush = $('#'+num);
     gameStatus.currPush.addClass('light');
   };
@@ -47,20 +58,19 @@ $(document).ready(function(){
   function stopGoodTones(){
     if(gameStatus.currPush)
       gameStatus.currPush.removeClass('light');
-    if(gameStatus.currOsc)
-      gameStatus.currOsc.disconnect(gainNode);
+      gainNodes.forEach(function(g){
+        g.gain.linearRampToValueAtTime(0, audioCtx.currentTime + ramp);
+      });
     gameStatus.currPush = undefined;
     gameStatus.currOsc = undefined;
   };
   
   function playErrTone(){
-    errOsc.connect(gainNode);
+    errNode.gain.linearRampToValueAtTime(0.8, audioCtx.currentTime + ramp);
   };
   
   function stopErrTone(){
-  try{
-    errOsc.disconnect(gainNode);
-  }catch(err){};
+    errNode.gain.linearRampToValueAtTime(0, audioCtx.currentTime + ramp);
   };
  
     function gameStart(){
@@ -223,8 +233,8 @@ $(document).ready(function(){
     }else{    
       $('.btn').removeClass('unclickable').addClass('clickable');
       $('.count').removeClass('led-off');
-      $('#start').click(gameStart);  // Seq testing
-      $('#mode').click(toggleStrict); // Error testing
+      $('#start').click(gameStart); 
+      $('#mode').click(toggleStrict); 
     }     
   });
   
