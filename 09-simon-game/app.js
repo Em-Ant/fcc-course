@@ -14,7 +14,7 @@ $(document).ready(function(){
   errNode.connect(audioCtx.destination);
   
   var ramp = 0.1;
-  
+  var vol = 0.5;
   var gameStatus = {};
   
   gameStatus.reset = function(){
@@ -50,7 +50,7 @@ $(document).ready(function(){
   
   
   function playGoodTone(num){
-    gainNodes[num].gain.linearRampToValueAtTime(0.8, audioCtx.currentTime + ramp);
+    gainNodes[num].gain.linearRampToValueAtTime(vol, audioCtx.currentTime + ramp);
     gameStatus.currPush = $('#'+num);
     gameStatus.currPush.addClass('light');
   };
@@ -66,7 +66,7 @@ $(document).ready(function(){
   };
   
   function playErrTone(){
-    errNode.gain.linearRampToValueAtTime(0.8, audioCtx.currentTime + ramp);
+    errNode.gain.linearRampToValueAtTime(vol, audioCtx.currentTime + ramp);
   };
   
   function stopErrTone(){
