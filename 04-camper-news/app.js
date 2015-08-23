@@ -32,8 +32,8 @@ $(document).ready(function(){
     $new_div.fadeIn(500);
   };
   
-  getData().then(function(data){
-      $('#loader').hide();
+  function showData(data){
+          $('#loader').hide();
       var col = 1;
       data.forEach(function(el){
         displayElement(el,$('.out-'+col));
@@ -41,5 +41,14 @@ $(document).ready(function(){
         if(col > 6)
           col = 1;
       });
-    });
+    }
+  
+  function showErr(xhr,err){
+    $('#loader img').hide();
+    $('#loader').text("SORRY, CONNECTION ERROR !");
+    console.log(xhr,err);
+  }
+  
+  getData().then(showData,showErr);
+
 });
