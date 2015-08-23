@@ -43,8 +43,9 @@ $(document).ready(function(){
     $.when.apply(null,promises)
       .then(function(){
         deferred.resolve();  
-      
-      }); 
+      },function(){
+      deferred.reject();
+    }); 
     
     return deferred.promise(); // return one promise, resolved when all AJAX call succeded
   };
@@ -63,19 +64,19 @@ $(document).ready(function(){
         users_data = temp;
         temp = undefined;
         deferred.resolve();                             
-      }); 
-    
+      },function(){
+        deferred.reject();
+    });     
     return deferred.promise(); // return one promise, resolved when all AJAX call succeded
   };
   
     var displayElems = function(obj_array,$where){
       $where.empty();  
-      console.log(obj_array);
       var $ul = $('<ul class="list-unstyled"></ul>');
       obj_array.forEach(function(el){
         if(!el.error){
       var online = el.stream ? 'fa fa-check-square green' : 'fa fa-exclamation-circle yellow';
-      var logo = el.logo ? el.logo : './img/twitch.png'
+      var logo = el.logo ? el.logo : 'http://emant.altervista.org/ext/twitch.png'
       var $li = $('<li class="users"><img class="logo" src="'+ logo +'"/></li>');
       var $div = $('<div class="data"></div>');
       $div.append('<h4 class="name"><a href="'+el._links.channel+'">'+el.name+'</a></h4><p class="online"><i class="' + online+'"></i></p>');
@@ -87,11 +88,13 @@ $(document).ready(function(){
     });
     $where.append($ul);
   };
-    /*****************************
-    * INITIALIZATION STARTS HERE 
-    *****************************/
-  $('.active-wrap').hide();
-  collectData().then(collectLogos).then(function(){
+  
+  function displayErr(){
+    $('.pre').hide();
+    $('.preload').append('<h3>CONNECTION ERROR!</h3>');
+  };
+  
+  function displayData(){
     //Initialize after data are ready
     displayElems(users_data,$('.out'));
     selected_users = users_data;
@@ -112,5 +115,11 @@ $(document).ready(function(){
    $('.nav').prepend($ul);
    $('.preload').fadeOut();
    $('.active-wrap').fadeIn(500); 
-  }); 
+  }; 
+  
+    /*****************************
+    * INITIALIZATION STARTS HERE 
+    *****************************/
+  $('.active-wrap').hide();
+  collectData().then(collectLogos,displayErr).then(displayData);
 });
