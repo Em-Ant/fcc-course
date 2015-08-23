@@ -51,8 +51,8 @@ $(document).ready(function(){
     }
 
     $('.view').fadeOut(function(){
-      $('#city').text(data.name+', '+data.sys.country);
-      $('#w-icon').removeClass().addClass("wi wi-owm"+iconSwitch+data.weather[0].id);
+      $('#C').text(data.name+', '+data.sys.country);
+      $('#I').removeClass().addClass("wi wi-owm"+iconSwitch+data.weather[0].id);
       $('#D').text(data.weather[0].description);
       $('#T').text(Math.round(data.main.temp*2)/2);
       $("#T-units").removeClass().addClass(tempUnits);
@@ -61,7 +61,7 @@ $(document).ready(function(){
       $("#W").text(Math.round(data.wind.speed*2)/2);
       $("#W-dir").removeClass().addClass('wi wi-wind towards-'+Math.round(data.wind.deg)+'-deg');
       $("#W-units").text(speedUnits);
-      $('.view').css('background','linear-gradient(to bottom , hsl('+resetHue(hue)+',70%,20%), hsl('+resetHue(hue-60)+',80%,40%))');
+      $('.view').css('background','linear-gradient(to bottom , hsl('+resetHue(hue)+',70%,20%), hsl('+resetHue(hue+60)+',80%,40%))');
       $('.view').fadeIn();
     });
     
@@ -70,13 +70,13 @@ $(document).ready(function(){
     for production version*/
     if(firstQuery){
       if(data.main.temp > 30)
-        $('body').css('background-image','url(./img/w_bg_4.jpg)');
+        $('body').css('background-image','url(http://emant.altervista.org/ext/w_bg_4.jpg)');
       else if (data.main.temp > 20)
-        $('body').css('background-image','url(./img/w_bg_3.jpg)');
+        $('body').css('background-image','url(http://emant.altervista.org/ext/w_bg_3.jpg)');
       else if (data.main.temp > 10)
-        $('body').css('background-image','url(./img/w_bg_2.jpg)');
+        $('body').css('background-image','url(http://emant.altervista.org/ext/w_bg_2.jpg)');
       else
-        $('body').css('background-image','url(./img/w_bg_1.jpg)');
+        $('body').css('background-image','url(http://emant.altervista.org/ext/w_bg_1.jpg)');
       $('.preloader').fadeOut();
       firstQuery = false;
     }    
