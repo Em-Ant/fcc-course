@@ -1,3 +1,14 @@
+/**
+* REMOVE
+* Exercise 7 of 9
+*
+* This lesson involves removing a document with the given _id.
+*
+* The collection name will be passed as the first argument to your script.
+*
+* The _id will be passed as the second argument to your script.
+*/
+
 var mongo = require('mongodb').MongoClient
 
 var collection = process.argv[2];

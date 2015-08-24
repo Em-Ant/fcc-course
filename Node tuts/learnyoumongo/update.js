@@ -1,3 +1,22 @@
+/**
+* UPDATE
+* Exercise 6 of 9
+*
+* Here we are going to update a document in the users collection.
+*
+* Say we have a user defined like:
+*
+*    {
+*      "name": "Tina",
+*      "age": 30,
+*      "username": "tinatime"
+*    }
+*
+* We want to change Tina's age from 30 to 40.
+*
+* For the purpose of this lesson, assume that the username property is unique.
+*/
+
 var mongo = require('mongodb').MongoClient
 
 var url = 'mongodb://localhost:27017/learnyoumongo'
