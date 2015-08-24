@@ -1,4 +1,4 @@
-# FreeCodeCamp Bonfires
+# freeCodeCamp Bonfires
 ### Algorithm challenges
 
 ####Basic Algorithm Scripting

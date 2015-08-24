@@ -4,7 +4,7 @@
 This is a local copy of my solutions for the basic - intermediate challenges for the [freeCodeCamp](http://www.freecodecamp.com/map) course.
 The advanced full-stack projects (*Basejumps*) will be hosted on Heroku, and will have their own repositories.
 
-The solutions to the front-end challenges (*Ziplines*) have their own folder. They are also published on my [Codepen](http://codepen.io/Em-Ant/) profile. The image resources needed for are them provided  in local `./img` folders, where needed. The external JS libraries, and CSS components are linked via CDN, so you have to be connected to the Web to use the projects without any modification. 
+The solutions to the front-end challenges (*Ziplines*) have their own folder. They are also published on my [Codepen](http://codepen.io/Em-Ant/) profile. The image resources are provided  in local `./img` folders, where needed. The external JS libraries, and CSS components are linked via CDN, so you have to be connected to the Web to use the projects without any modification. 
 
 The external libraries needed for almost every project in the *Ziplines* are :
 

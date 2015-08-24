@@ -1,3 +1,3 @@
-# FreeCodeCamp NodeJS based Tutorials
-### Introductory MEAN full-stack challenges
+# freeCodeCamp NodeJS based Tutorials
+### Introductory exercises to MEAN full-stack challenges
 

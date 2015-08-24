@@ -1,4 +1,4 @@
-# FreeCodeCamp Ziplines
+# freeCodeCamp Ziplines
 ### Intermediate front-end challenges
 
 This is a local copy of my solutions for the front-end development projects for the [freeCodeCamp](http://www.freecodecamp.com/map) course.
