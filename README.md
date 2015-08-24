@@ -1,4 +1,4 @@
-# FreeCodeCamp Challenges
+# freeCodeCamp Challenges
 ### Bonfire, Ziplines and Node.js based tutorials
 
 This is a local copy of my solutions for the basic - intermediate challenges for the [freeCodeCamp](http://www.freecodecamp.com/map) course.
