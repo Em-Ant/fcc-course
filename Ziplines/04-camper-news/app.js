@@ -7,7 +7,7 @@ $(document).ready(function(){
   };
 
   var displayElement = function(obj,$where){
-    var $new_div = $('<a class="element"></a>').attr('href',obj.link);
+    var $new_div = $('<a class="element" target="_blank"></a>').attr('href',obj.link);
     $new_div.hide();
     var pict = obj.image ? obj.image : obj.author.picture;
     var $img = $('<img></img>').bind('error',function(){
@@ -25,7 +25,7 @@ $(document).ready(function(){
     }else{
       commStr = 'go to discussion';
     }
-    $new_div.append($('<a href="'+discussUrl+'"><h3 class="comments">'+commStr+'</h3></a>'));
+    $new_div.append($('<a href="'+discussUrl+' target="_blank"><h3 class="comments">'+commStr+'</h3></a>'));
     $new_div.append($('<h3 class="author">'+obj.author.username+'</h3>'));
     $new_div.append($('<div class="upvotes"><h3 class="up-nr">+'+obj.upVotes.length+'</h3></div>'));
     $where.append($new_div);
