@@ -12,7 +12,7 @@ $(document).ready(function(){
   // jQueryUI Autocomplete
   $("#in").autocomplete({
     source : function(request,response){
-      var autocomp_url = '&prop=info&generator=allpages&gaplimit=8&gapfrom=' ;
+      var autocomp_url = '&prop=info&generator=allpages&gaplimit=8&gapfrom=' 
       autocomp_url = base_url + autocomp_url + (encodeURIComponent(request.term)+options);
       $.getJSON(autocomp_url,{},function(data){
         var obj = data.query.pages;
@@ -59,13 +59,13 @@ $(document).ready(function(){
     return $.getJSON(url,{},function(data){
       var obj = data.query.pages;      
       for (var prop in obj){
-        var $new_li = $("<li></li>");
+        var $new_a = $('<a target="_blank" href="' + obj[prop].fullurl + '">')
+        var $new_li = $('<li></li>');
+        $new_a.append($new_li);
         $new_li.hide();
-        $new_li.click(clickLiFun);
-        $new_li.attr('url',obj[prop].fullurl);
         $new_li.append($('<h3 class="li-title"></h3>').text(obj[prop].title));
         $new_li.append($("<p></p>").text(obj[prop].extract));
-        $where.append($new_li);
+        $where.append($new_a);
         $new_li.fadeIn();
       }
       // setup continue search for infinite scroll
@@ -76,7 +76,7 @@ $(document).ready(function(){
         continueEnabled = false
      $('div#ajaxloader').hide();
      }).fail(function(xhr,text,err){
-      $where.append($('<li></li>').append($('<h3></h3>').text('Error Performing API Request')));
+      $where.append($('<li class="text-center"></li>').append($('<h3></h3>').text('Error Performing API Request')));
       $('div#ajaxloader').hide();
     });
   }
@@ -95,13 +95,6 @@ $(document).ready(function(){
         }
       }
   });
-  
-  var clickLiFun = function(){
-    window.location = $(this).attr('url');
-    console.log($(this).attr('url'));
-    $('.custom li').addClass('disabled').click('');
-  };
-
 });
 
 
