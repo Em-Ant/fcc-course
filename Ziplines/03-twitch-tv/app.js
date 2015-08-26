@@ -76,10 +76,11 @@ $(document).ready(function(){
       obj_array.forEach(function(el){
         if(!el.error){
       var online = el.stream ? 'fa fa-check-square green' : 'fa fa-exclamation-circle yellow';
-      var logo = el.logo ? el.logo : 'http://emant.altervista.org/ext/twitch.png'
+      var logo = el.logo ? el.logo : 'http://lorempixel.com/80/80/abstract"'
       var $li = $('<li class="users"><img class="logo" src="'+ logo +'"/></li>');
       var $div = $('<div class="data"></div>');
-      $div.append('<h4 class="name"><a href="'+el._links.channel+'">'+el.name+'</a></h4><p class="online"><i class="' + online+'"></i></p>');
+          console.log(el);
+      $div.append('<h4 class="name"><a href="http://www.twitch.tv/' +el.name+ ' " target="_blank">'+el.name+'</a></h4><p class="online"><i class="' + online+'"></i></p>');
       if(el.stream)
         $div.append($('<p class="streaming" >'+ el.stream.game +'</p>'));
      $li.append($div); 
