@@ -1,9 +1,15 @@
 
 //Bonfire: Inventory Update	Jul 24, 2015	
 
-// Compare and update inventory stored in a 2d array against a second 2d array of a fresh delivery. Update current inventory item quantity, and if an item cannot be found, add the new item and quantity into the inventory array in alphabetical order.
-
-// Compare and update inventory stored in a 2d array against a second 2d array of a fresh delivery. Update current inventory item quantity, and if an item cannot be found, add the new item and quantity into the inventory array in alphabetical order.
+/**
+* Compare and update inventory stored in a 2d array against a second 2d array
+* of a fresh delivery.  Update current inventory item quantity, and if an 
+* item cannot be found, add the new item and quantity into the inventory array
+* in alphabetical order.
+*
+* Updated solution with a polyfill for Array.prototype.findIndex
+*
+*/
 
 function inventory(curInv, newInv) {
     var newElems =[];
@@ -45,5 +51,29 @@ var newInv = [
     [67, 'Bowling Ball'],
     [7, 'Toothpaste']
 ];
+
+//Polyfill for browser not compliant with ES6
+if (!Array.prototype.findIndex) {
+  Array.prototype.findIndex = function(predicate) {
+    if (this === null) {
+      throw new TypeError('Array.prototype.findIndex called on null or undefined');
+    }
+    if (typeof predicate !== 'function') {
+      throw new TypeError('predicate must be a function');
+    }
+    var list = Object(this);
+    var length = list.length >>> 0;
+    var thisArg = arguments[1];
+    var value;
+
+    for (var i = 0; i < length; i++) {
+      value = list[i];
+      if (predicate.call(thisArg, value, i, list)) {
+        return i;
+      }
+    }
+    return -1;
+  };
+}
 
 inventory(curInv, newInv);
