@@ -1,21 +1,18 @@
-@import url('http://fonts.googleapis.com/css?family=VT323|Pacifico|Nova+Mono');
+@import url(http://fonts.googleapis.com/css?family=VT323|Pacifico|Nova+Mono);
 
 body{
   font-family:'Nova Mono',monospace;
 }
 
 *{
-   
-  -webkit-user-select: none; /* Chrome/Safari */        
+   -webkit-user-select: none; /* Chrome/Safari */        
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+ */
 
   /* Rules below not implemented in browsers yet */
   -o-user-select: none;
-  user-select: none;
-
+  user-select: none;  
 }
-
 .btn {
   width: 50px;
   position:relative;
@@ -44,6 +41,7 @@ body{
   border: 2px solid #888;
   border-radius: 7px;
   background-color : #6F7558;
+  box-shadow : 3px 3px 4px #444 inset;
 }
 
 .result h2 {
