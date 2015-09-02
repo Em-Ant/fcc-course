@@ -15,6 +15,7 @@ $(document).ready(function(){
   
   var ramp = 0.1;
   var vol = 0.5;
+  
   var gameStatus = {};
   
   gameStatus.reset = function(){
@@ -73,8 +74,10 @@ $(document).ready(function(){
     errNode.gain.linearRampToValueAtTime(0, audioCtx.currentTime + ramp);
   };
  
-    function gameStart(){
+  function gameStart(){
     resetTimers();
+    stopGoodTones();
+    stopErrTone();
     $('.count').text('--').removeClass('led-off');;
     gameStatus.init();
     addStep();
