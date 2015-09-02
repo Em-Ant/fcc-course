@@ -5,6 +5,13 @@ $(document).ready(function(){
   var active_operator;          // char in [+-*/] representing the last op button pushed
   var previous_operand;         // float -the first operand for chaining ops 
   
+  function parseCurrOpnd(digitsArray) {
+    var d = digitsArray.join('');
+    if (d === '.') return 0.0;
+    else
+      return parseFloat(d);
+  }
+  
   // one callback for all the buttons
   $('.btn').click(function(){
     switch($(this).text()){
@@ -17,11 +24,21 @@ $(document).ready(function(){
       case "7":
       case "8":
       case "9":
-      case "0":
-      case ".":{
-        // if the user pressed a digit or dec point
+      case "0":{
+        
+        // if the user pressed a digit
         // add the symbol to the display array, and show it
         if(current_out.length < 10){
+          current_out.push($(this).text());
+          $('.result h2').text(current_out.join(''));
+        }
+        break;
+      }
+      
+      // if the user pressed the decimal point
+      // add the symbol only if it's the first one, and show it
+      case ".": {
+        if(current_out.indexOf('.') === -1 && current_out.length < 10) {
           current_out.push($(this).text());
           $('.result h2').text(current_out.join(''));
         }
@@ -45,22 +62,22 @@ $(document).ready(function(){
       /* if the user pressed an operator button, the previous pending
       operation is executed and returned, then the active op is set */
       case "x":{      
-        exec_active_oper(parseFloat(current_out.join('')));
+        exec_active_oper(parseCurrOpnd(current_out));
         active_operator = "x";
         break;
       }
       case "+":{
-        exec_active_oper(parseFloat(current_out.join('')));
+        exec_active_oper(parseCurrOpnd(current_out));
         active_operator = "+";
         break;
       }
       case "-":{
-        exec_active_oper(parseFloat(current_out.join('')));
+        exec_active_oper(parseCurrOpnd(current_out));
         active_operator = "-";
         break;
       }
       case "/":{
-        exec_active_oper(parseFloat(current_out.join('')));
+        exec_active_oper(parseCurrOpnd(current_out));
         active_operator = "/";
         break;
       }
@@ -78,7 +95,7 @@ $(document).ready(function(){
         }    
       }
       case "=":{
-        exec_active_oper(parseFloat(current_out.join('')));
+        exec_active_oper(parseCurrOpnd(current_out));
         active_operator = undefined;
         break;
       }
@@ -86,7 +103,8 @@ $(document).ready(function(){
   });
   
   exec_active_oper=function(curr_opnd){
-    if (active_operator && curr_opnd){
+    if (active_operator && !isNaN(curr_opnd) 
+        && previous_operand !== undefined && !isNaN(previous_operand)){
       switch(active_operator){
         case "x":{
           previous_operand *= curr_opnd;
@@ -110,15 +128,17 @@ $(document).ready(function(){
       as the pending operand */
       previous_operand = parseFloat($('.result h2').text());
     }
-    // the calc allows max 10 digits for  rationals
-    var rounder;
-    if(previous_operand !== 0) 
-      rounder = Math.floor(Math.log10(Math.abs(previous_operand)));
-    else
-      rounder = 0;
-    rounder = Math.pow(10,10-rounder);
-    $('.result h2').text(Math.round(previous_operand*rounder)/rounder);
-    current_out = [];
+    if(!isNaN(previous_operand)){
+      // the calc allows max 10 digits for  rationals
+      var rounder;
+      if(previous_operand !== 0) 
+        rounder = Math.floor(Math.log10(Math.abs(previous_operand)));
+      else
+        rounder = 0;
+      rounder = Math.pow(10,10-rounder);
+      $('.result h2').text(Math.round(previous_operand*rounder)/rounder);
+      current_out = [];
+    }
   }
 });
 
