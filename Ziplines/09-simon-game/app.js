@@ -78,7 +78,8 @@ $(document).ready(function(){
     resetTimers();
     stopGoodTones();
     stopErrTone();
-    $('.count').text('--').removeClass('led-off');;
+    $('.count').text('--').removeClass('led-off');
+    flashMessage('--',1);
     gameStatus.init();
     addStep();
   }
