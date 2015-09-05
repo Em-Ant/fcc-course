@@ -15,7 +15,7 @@ $(document).ready(function(){
       if(obj.img)
         $(this).attr('src',obj.author.picture);
       else
-       $(this).attr('src','https://s3.amazonaws.com/freecodecamp//camper-image-placeholder.png');
+       $(this).attr('src','https://s3.amazonaws.com/freecodecamp/camper-image-placeholder.png');
     }).attr('src',pict);    
     $new_div.append($img);
     $new_div.append($('<h3 class="headline"></h3>').text(obj.headline));
