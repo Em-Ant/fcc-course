@@ -15,17 +15,17 @@ $(document).ready(function(){
       if(obj.img)
         $(this).attr('src',obj.author.picture);
       else
-       $(this).attr('src','https://s3.amazonaws.com/freecodecamp/camper-image-placeholder.png');
+       $(this).attr('src','https://s3.amazonaws.com/freecodecamp//camper-image-placeholder.png');
     }).attr('src',pict);    
     $new_div.append($img);
     $new_div.append($('<h3 class="headline"></h3>').text(obj.headline));
-    var discussUrl = "http://www.freecodecamp.com/news/" + obj.storyLink.replace(" ","-")
+    var discussUrl = "http://www.freecodecamp.com/news/" + obj.storyLink.replace(/\s/g,"-");
     if(obj.comments){
       var commStr = obj.comments.length+' comments';
     }else{
       commStr = 'go to discussion';
     }
-    $new_div.append($('<a href="'+discussUrl+' target="_blank"><h3 class="comments">'+commStr+'</h3></a>'));
+    $new_div.append($('<a href="'+discussUrl+'" target="_blank"><h3 class="comments">'+commStr+'</h3></a>'));
     $new_div.append($('<h3 class="author">'+obj.author.username+'</h3>'));
     $new_div.append($('<div class="upvotes"><h3 class="up-nr">+'+obj.upVotes.length+'</h3></div>'));
     $where.append($new_div);
