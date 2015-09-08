@@ -7,8 +7,9 @@ $(document).ready(function(){
   var cont = '&continue=gsroffset%7C%7C&gsroffset=';
   var search, gsroffset ,continueEnabled, $out_ul;
 
-
   
+  $('#ajaxloader').hide();
+
   // jQueryUI Autocomplete
   $("#in").autocomplete({
     source : function(request,response){
@@ -60,9 +61,8 @@ $(document).ready(function(){
       var obj = data.query.pages;      
       for (var prop in obj){
         var $new_a = $('<a target="_blank" href="' + obj[prop].fullurl + '">')
-        var $new_li = $('<li></li>');
+        var $new_li = $('<li></li>').hide();
         $new_a.append($new_li);
-        $new_li.hide();
         $new_li.append($('<h3 class="li-title"></h3>').text(obj[prop].title));
         $new_li.append($("<p></p>").text(obj[prop].extract));
         $where.append($new_a);
@@ -96,7 +96,3 @@ $(document).ready(function(){
       }
   });
 });
-
-
-
-
