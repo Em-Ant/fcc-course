@@ -32,7 +32,6 @@ $(document).ready(function(){
   
   
   var collectData = function(){
-    var deferred = $.Deferred();
     var promises = users.map(function(el){
       return $.getJSON(url+st+el+cb,function(data){
         data.name = el;
@@ -40,18 +39,10 @@ $(document).ready(function(){
       }).fail(function(x,t,r){console.log('fail '+t+' '+r)});
     });   
     // call $.when() with an array or promises
-    $.when.apply(null,promises)
-      .then(function(){
-        deferred.resolve();  
-      },function(){
-      deferred.reject();
-    }); 
-    
-    return deferred.promise(); // return one promise, resolved when all AJAX call succeded
+    return $.when.apply(null,promises);
   };
 
   var collectLogos = function(){
-    var deferred = $.Deferred();
     var promises = users_data.map(function(el){
       return $.getJSON(url+us+el.name+cb,function(data){
         el.logo = data.logo;
@@ -59,15 +50,7 @@ $(document).ready(function(){
       }).fail(function(x,t,r){console.log('fail '+t+' '+r)});
     });   
     // call $.when() with an array or promises
-    $.when.apply(null,promises)
-      .then(function(){
-        users_data = temp;
-        temp = undefined;
-        deferred.resolve();                             
-      },function(){
-        deferred.reject();
-    });     
-    return deferred.promise(); // return one promise, resolved when all AJAX call succeded
+    return $.when.apply(null,promises) ;
   };
   
     var displayElems = function(obj_array,$where){
@@ -79,7 +62,6 @@ $(document).ready(function(){
       var logo = el.logo ? el.logo : 'http://lorempixel.com/80/80/abstract"'
       var $li = $('<li class="users"><img class="logo" src="'+ logo +'"/></li>');
       var $div = $('<div class="data"></div>');
-          console.log(el);
       $div.append('<h4 class="name"><a href="http://www.twitch.tv/' +el.name+ ' " target="_blank">'+el.name+'</a></h4><p class="online"><i class="' + online+'"></i></p>');
       if(el.stream)
         $div.append($('<p class="streaming" >'+ el.stream.game +'</p>'));
