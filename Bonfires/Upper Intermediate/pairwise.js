@@ -6,7 +6,7 @@ function pairwise(arr, arg) {
   return arr.reduce(function(prev,curr,ind,ar){
     
     for(var i = 0; i  < ar.length; i++){
-      if ((used.indexOf(ind) != -1) || (used.indexOf(i) != -1) ||ind === i )
+      if ((used.indexOf(ind) != -1) || (used.indexOf(i) != -1) || ind === i )
         continue;
         
       if ((curr + ar[i]) === arg){
