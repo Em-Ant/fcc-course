@@ -1,4 +1,4 @@
-@import url("http://fonts.googleapis.com/css?family=Bangers");
+@import url('http://fonts.googleapis.com/css?family=Bangers');
 
 body{
   background-color : #948C75;
@@ -30,7 +30,8 @@ a.element{
   display:inline-block;
   background-color: #E8E5E4;
   color : #444;
-  transition: all 0.1s;
+  top: 0;
+  transition: all 0.2s;
 }
 
 a.element:hover{
