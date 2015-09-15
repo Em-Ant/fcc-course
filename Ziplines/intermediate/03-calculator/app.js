@@ -5,10 +5,12 @@ $(document).ready(function(){
   var active_operator;          // char in [+-*/] representing the last op button pushed
   var previous_operand;         // float -the first operand for chaining ops 
   
+  // fallbacks for 'weird' inputs
   function parseCurrOpnd(digitsString) {
+    
     if (digitsString === '.') return 0.0;
-    else
-      return parseFloat(digitsString);
+    if(isNaN(parseFloat(digitsString))) return 0.0;
+    else return parseFloat(digitsString);
   }
   
   // one callback for all the buttons
@@ -23,7 +25,7 @@ $(document).ready(function(){
       case "7":
       case "8":
       case "9":
-      case "0":{
+      case "0": {
         
         // if the user pressed a digit
         // add the symbol to the display array, and show it
@@ -44,6 +46,7 @@ $(document).ready(function(){
         break;
       }
       case "AC":{
+        
         // ALL CLEAR
         current_out = [];
         previous_operand = undefined;
@@ -52,12 +55,14 @@ $(document).ready(function(){
         break;
       }
       case "CE":{
+        
         // CLEAR LAST IN : push back a char from display
         current_out.pop();
         var disp = (current_out.length) ? current_out.join('') : '0';
         $('.result h2').text(disp);
         break;
       }
+        
       /* if the user pressed an operator button, the previous pending
       operation is executed and returned, then the active op is set */
       case "x":{      
@@ -81,6 +86,7 @@ $(document).ready(function(){
         break;
       }
       case "%":{
+        
         /* % calculates the current display percent of the 
         pending operand*/
         if(previous_operand){
@@ -101,6 +107,7 @@ $(document).ready(function(){
     }
   });
   
+  // BUSINESS LOGIC HERE
   exec_active_oper=function(curr_opnd){
     if (active_operator ){
       switch(active_operator){
@@ -121,7 +128,8 @@ $(document).ready(function(){
           break;
         }
       }        
-    }else{
+    } else {
+      
       /* if there is not active pending operator, returns the current display
       as the pending operand */
       previous_operand = parseCurrOpnd($('.result h2').text());
@@ -134,7 +142,16 @@ $(document).ready(function(){
     else
       rounder = 0;
     rounder = Math.pow(10,10-rounder);
-    $('.result h2').text(Math.round(previous_operand*rounder)/rounder);
+    var rounded = Math.round(previous_operand*rounder)/rounder;
+    
+    // check if output is to big to be displayed.
+    // !! No scientific notation.
+    if (rounded <= 9999999999 && rounded >= -9999999999) {
+      $('.result h2').text(rounded);
+    } else {
+      $('.result h2').text('err');
+      previous_operand = undefined;
+    }
     current_out = [];
   }
 });
