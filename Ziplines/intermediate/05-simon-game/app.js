@@ -1,5 +1,5 @@
-/** 
-* SIMON GAME 
+/**
+* SIMON GAME
 *
 * by EmAnt - 2015
 *
@@ -8,26 +8,28 @@
 *
 ***********************************************
 * !!! It uses the new AudioContext API !!!
-* You Need an up-to-date version of Firefox 
+* You Need an up-to-date version of Firefox
 * or Chrome to play it.
 ***********************************************
 */
 
 
 $(document).ready(function(){
-  
+
   // Checking for Web Audio API on your browser ...
   var AudioContext = window.AudioContext // Default
     || window.webkitAudioContext // Safari and old versions of Chrome
-    || false; 
-  
+    || false;
+
   if(!AudioContext) {
-    
+
     // Sorry, but the game won't work for you
-    alert("Sorry, but the Web Audio API is not supported by your browser. Please,  consider downloading the latest version of Google Chrome or Mozilla Firefox");
-  
+    alert('Sorry, but the Web Audio API is not supported by your browser.' +
+    'Please,  consider downloading the latest version' +
+    ' of Google Chrome or Mozilla Firefox');
+
   } else {
-  
+
     // You can play the game !!!!
     var audioCtx = new AudioContext();
 
@@ -61,7 +63,7 @@ $(document).ready(function(){
       this.lock = false;
     };
 
-    // create Oscillators 
+    // create Oscillators
     var oscillators = frequencies.map(function(frq){
       var osc = audioCtx.createOscillator();
       osc.type = 'sine';
@@ -76,11 +78,12 @@ $(document).ready(function(){
       g.connect(audioCtx.destination);
       g.gain.value = 0;
       return g;
-    }); 
+    });
 
 
     function playGoodTone(num){
-      gainNodes[num].gain.linearRampToValueAtTime(vol, audioCtx.currentTime + ramp);
+      gainNodes[num].gain
+        .linearRampToValueAtTime(vol, audioCtx.currentTime + ramp);
       gameStatus.currPush = $('#'+num);
       gameStatus.currPush.addClass('light');
     };
@@ -186,7 +189,8 @@ $(document).ready(function(){
         displayCount();
         gameStatus.lock = true;
         playGoodTone(gameStatus.sequence[i]);
-        gameStatus.toHndl = setTimeout(stopGoodTones,gameStatus.timeStep/2 - 10);
+        gameStatus
+          .toHndl = setTimeout(stopGoodTones,gameStatus.timeStep/2 - 10);
         i++;
         if(i === gameStatus.sequence.length){
           clearInterval(gameStatus.seqHndl);
@@ -257,22 +261,21 @@ $(document).ready(function(){
         $('.count').addClass('led-off');
         $('#mode-led').removeClass('led-on');
         $('.push').removeClass('clickable').addClass('unclickable');
-        $('#start').off('click'); 
+        $('#start').off('click');
         $('#mode').off('click');
         $('.btn').removeClass('unclickable').addClass('clickable');
         resetTimers();
         stopGoodTones();
         stopErrTone();
-      }else{    
+      }else{
         $('.btn').removeClass('unclickable').addClass('clickable');
         $('.count').removeClass('led-off');
-        $('#start').click(gameStart); 
-        $('#mode').click(toggleStrict); 
-      }     
+        $('#start').click(gameStart);
+        $('#mode').click(toggleStrict);
+      }
     });
 
     gameStatus.reset();
 
   }
 });
-
