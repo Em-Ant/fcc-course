@@ -1,13 +1,37 @@
+/**
+* -----------------------------------------------
+*             SHOW THE LOCAL WEATHER v1
+*              for freeCodeCamp.com
+* -----------------------------------------------
+*
+* This is the first version of the exercise.
+*
+* For this exercise I used :
+* - Pure CSS3 design
+* - JQuery with Ajax
+* - OpenWeatherMap API
+* - ip-api.com for geolocation
+* - Google Fonts
+* - Weather Icons from Erik Flowers
+* - Font Awesome (the spinning preloader)
+*
+* A new version with analogous design,
+* using AngularJS is available at
+* ------------------------------------------------
+* ====> http://codepen.io/Em-Ant/pen/dYoxqv
+* ------------------------------------------------
+*/
+
 $(document).ready(function(){
-  
+
   // select the background only one time
   var firstQuery = true;
-  
+
   var queryOptions = {
     units: 'metric',
     position : ''
   }
- 
+
   var getPosition = function (options) {
     return $.get("http://ip-api.com/json", function (response) {
       queryOptions.position = {
@@ -15,20 +39,20 @@ $(document).ready(function(){
         lon : response.lon,
         city : response.city,
         countryCode : response.countryCode
-      }; 
-    }); 
+      };
+    });
   };
 
-  var getWeather = function() {      
+  var getWeather = function() {
     var baseUrl = "http://api.openweathermap.org/data/2.5/weather?";
     var queryUrl = baseUrl + 'units=' + queryOptions.units + '&q=' +
  queryOptions.position.city + ',' + queryOptions.position.countryCode;
     return $.getJSON(queryUrl);
   }
 
-  
+
   var displayData = function(data){
-    
+
     if(queryOptions.units === 'imperial'){
       var tempUnits = 'wi wi-fahrenheit';
       var speedUnits = ' MPH ';
@@ -38,16 +62,16 @@ $(document).ready(function(){
       tempUnits = 'wi wi-celsius';
       speedUnits = ' m/s ';
       hue = 250 - Math.round(6*data.main.temp);
-    }    
-    
+    }
+
       if( Date.now() >= data.sys.sunrise*1000 && Date.now() <= data.sys.sunset*1000)
         var iconSwitch = '-day-';
       else
         iconSwitch = '-night-';
 
     var resetHue = function(x){
-      x =  (x > 360) ? x -360 : x; 
-      return (x < 0) ? x + 360 : x;  
+      x =  (x > 360) ? x -360 : x;
+      return (x < 0) ? x + 360 : x;
     }
 
     $('.view').fadeOut(function(){
@@ -64,8 +88,8 @@ $(document).ready(function(){
       $('.view').css('background','linear-gradient(to bottom , hsl('+resetHue(hue)+',70%,20%), hsl('+resetHue(hue+60)+',80%,40%))');
       $('.view').fadeIn();
     });
-    
-    /* if it's the startUp query select the appropriate BG. I used low-res images 
+
+    /* if it's the startUp query select the appropriate BG. I used low-res images
     to save bandwidth and improve loading time. They can be replaced with better ones,
     for production version*/
     if(firstQuery){
@@ -79,10 +103,10 @@ $(document).ready(function(){
         $('body').css('background-image','url(http://emant.altervista.org/ext/w_bg_1.jpg)');
       $('.preloader').fadeOut();
       firstQuery = false;
-    }    
+    }
     $('body').css('background-size','cover')
   };
-  
+
   function displayErr(){
     $('.view').hide();
     $('#city').text('------');
@@ -95,27 +119,23 @@ $(document).ready(function(){
     $("#W").text('---');
     $("#W-dir").removeClass().addClass('wi wi-wind');
     $("#W-units").text('---');
-    $('.view').fadeIn();    
+    $('.view').fadeIn();
   }
-  
+
   /* toggle units and perform a new query for weather
-  I could have written a func to convert values, 
+  I could have written a func to convert values,
   but this is easier, even if there could be differences in
   the data reported */
-  
-  $('.screen, .push').click(function(){  
+
+  $('.screen, .push').click(function(){
     if(queryOptions.units === 'imperial')
       queryOptions.units = 'metric';
     else
       queryOptions.units = 'imperial';
     getWeather().then(displayData,displayErr);
   });
-  
+
   // startUp API queries
   getPosition().then(getWeather,displayErr).then(displayData,displayErr);
-  
+
 });
-
-
-
-

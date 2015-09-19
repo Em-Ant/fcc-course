@@ -4,42 +4,48 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-	<title>Random Quotes Machine</title>
-	<script type="text/javascript" async src="//platform.twitter.com/widgets.js"></script>
+
+    <!-- Twitter Loader -->
+    <script>window.twttr = (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+      t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+
+    t._e = [];
+    t.ready = function(f) {
+      t._e.push(f);
+    };
+
+    return t;
+  }(document, "script", "twitter-wjs"));</script>
+
+  <title>Random Quotes</title>
 	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-	<link rel="stylesheet" href="./style.css">	
+	<link rel="stylesheet" href="./style.css">
 </head>
 <body >
-	<div class="container text-center">
-	  <h1 class="head">Random Quotes Machine</h1>
-	  <div class="paper">
-		<div class="top"></div>
-		<div id ="quote-area" class="mid">
-		  <div class="view">
-			<h3 class="quote" id="Q"></h3>
-			<h4 class="auth" id="A"></h4>
-		  </div>
-		</div>
-		<div class="bot"></div>
-		<div class="loader"><i class="fa fa-spinner fa-spin"></i></div>
-	  </div>
-	  <ul class="list-inline">
-		<li>
-		  <div id="new"class="btn btn-default custom-btn"><i class="fa fa-refresh"></i> New Quote</div>
-		</li>
-		<li id="tw-cont">
-		  <a id="twt" class="btn btn-default custom-btn"><i class="fa fa-twitter"></i> #RandomQuote</a>
-		</li>
-		</li>
-	  </ul>
-	  </div>
-		<div>
-			<h5 class="text-center">Powered by <a href="http://forismatic.com/en/">forismatic.com</a></h5>
-		</div>
-	</div>
+  <div class="container text-center">
+    <h1 class="text-center text-primary title">Random Quotes Machine</h1>
+    <div id="quote-area" class="custom-box">
+      <div>
+      </div>
+    </div>
+    <ul class="list-unstyled">
+      <li>
+        <button id="new" type="button" class="btn btn-primary custom-btn"><i class="fa fa-refresh"></i> New Quote</button>
+      </li>
+      <li id="tw-cont">
+      </li>
+      </li>
+    </ul>
+    </div>
+  </div>
 	<script type="text/javascript" src="./app.js"></script>
 </body>
 </html>

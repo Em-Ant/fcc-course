@@ -1,114 +1,48 @@
-@import url('http://fonts.googleapis.com/css?family=Cookie');
+@import url(https://fonts.googleapis.com/css?family=Josefin+Sans);
 
-html, body, div, span, applet, object, iframe,
- h1, h2, h3, h4, h5, h6, p, blockquote, pre,
- a, abbr, acronym, address, big, cite, code,
- del, dfn, em, img, ins, kbd, q, s, samp,
- small, strike, strong, sub, sup, tt, var,
- b, u, i, center,
- dl, dt, dd, ol, ul, li,
- fieldset, form, label, legend,
- table, caption, tbody, tfoot, thead, tr, th, td,
- article, aside, canvas, details, embed, 
- figure, figcaption, footer, header, hgroup, 
- menu, nav, output, ruby, section, summary,
- time, mark, audio, video {
- 	margin: 0;
- 	padding: 0;
- 	border: 0;
- 	font-size: 100%;
- 	font: inherit;
- 	vertical-align: baseline;
- }
-
-body{
-  font-family : 'Cookie';
-  font-size : 1.5em;
-  color: #444;
-  background-color:#e2e2e2;
-}
-
-.loader{
-  position: absolute;
-  font-size : 60px;
-  width : 60px;
-  top: 120px;
-  margin: auto;
-  display: none;
-  color: #555;
-  left : 0;
-  right: 0;
+body {
+  background-color: #f5f5f5;
+  font-family: 'Josefin Sans', sans-serif;
 }
 
 .custom-btn{
   width: 173px;
-  font-size: 0.8em;
-}
-
-.custom-btn:hover{
-  background-color :#F8F4E0;
-}
-
-.head{
-  font-size: 2em;
-  margin: 20px auto 40px auto;
 }
 
 .container{
   padding:20px;
-
 }
+
 .title{
   margin:auto;
   margin-top:90px;
   padding: 10px;
-  border : solid 1px;
-  border-radius: 10px;
-  background-color: #fff;
-  box-shadow: 5px 5px 10px #888;
 }
 
 li{
-  margin : 50px auto 10px auto;
+  margin : 10px auto;
 }
 
-
-.paper{
-  position:relative;
-	width: 678px;
-  margin: auto;
+#quote-area{
+  background-color: #fff;
+  margin : 30px auto;
+  box-shadow: 5px 5px 10px #888888;
+  padding : 40px;
+  border-color: #aaa;
 }
 
-
-.top{
-	background-image : url("./img/paper_scroll-0-0.png");
-	width: 678px;
-	height: 146px;
-}
-
-.mid{
-	background-image : url("./img/paper_scroll-0-1.png");
-	width: 678px;
-  padding : 20px;
-}
-
-.bot{
-	background-image : url("./img/paper_scroll-0-2.png");
-	width: 678px;
-	height: 110px;
-}
-
-.quote,.auth{
-  position:relative;
-  width : 400px;
-  margin: auto;
-  font-size: 1.5em;
-  color: #444;
+.custom-box{
+  max-width: 600px;
+  border : solid 1px;
+  border-radius: 10px;
 }
 
 .auth{
   margin-top : 20px;
-  color: #777;
+  color: #555;
 }
 
-
+/* remove the dotted outline on firefox */
+:focus, :active {
+    outline: 0 !important;
+}
