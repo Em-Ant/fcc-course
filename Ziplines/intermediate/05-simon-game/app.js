@@ -1,15 +1,15 @@
 /**
-* SIMON GAME
+*             SIMON GAME
+*         for freeCodeCamp.com
 *
-* by EmAnt - 2015
+*           by EmAnt - 2015
 *
-*
-* Simple Game using CSS3 & jQuery
+*     Simple Game using CSS3 & jQuery
 *
 ***********************************************
-* !!! It uses the new AudioContext API !!!
-* You Need an up-to-date version of Firefox
-* or Chrome to play it.
+* !!! It uses the new Web Audio API !!!
+* You Need an up-to-date browser.
+* Tested on Firefox, Chrome, Safari
 ***********************************************
 */
 
@@ -24,9 +24,9 @@ $(document).ready(function(){
   if(!AudioContext) {
 
     // Sorry, but the game won't work for you
-    alert('Sorry, but the Web Audio API is not supported by your browser.' +
-    'Please,  consider downloading the latest version' +
-    ' of Google Chrome or Mozilla Firefox');
+    alert('Sorry, but the Web Audio API is not supported by your browser.'
+    + ' Please, consider downloading the latest version of '
+    + 'Google Chrome or Mozilla Firefox');
 
   } else {
 
@@ -38,7 +38,7 @@ $(document).ready(function(){
     var errOsc = audioCtx.createOscillator();
     errOsc.type = 'triangle';
     errOsc.frequency.value = 110;
-    errOsc.start();
+    errOsc.start(0.0); //delay optional parameter is mandatory on Safari
     var errNode = audioCtx.createGain();
     errOsc.connect(errNode);
     errNode.gain.value = 0;
@@ -68,7 +68,7 @@ $(document).ready(function(){
       var osc = audioCtx.createOscillator();
       osc.type = 'sine';
       osc.frequency.value = frq;
-      osc.start();
+      osc.start(0.0); //delay optional parameter is mandatory on Safari 
       return osc;
     });
 
@@ -189,8 +189,7 @@ $(document).ready(function(){
         displayCount();
         gameStatus.lock = true;
         playGoodTone(gameStatus.sequence[i]);
-        gameStatus
-          .toHndl = setTimeout(stopGoodTones,gameStatus.timeStep/2 - 10);
+        gameStatus.toHndl = setTimeout(stopGoodTones,gameStatus.timeStep/2 - 10);
         i++;
         if(i === gameStatus.sequence.length){
           clearInterval(gameStatus.seqHndl);
@@ -218,7 +217,9 @@ $(document).ready(function(){
     function pushColor(pushObj){
       clearTimeout(gameStatus.toHndl);
       var pushNr = pushObj.attr('id');
-      if( pushNr == gameStatus.sequence[gameStatus.index] && gameStatus.index < gameStatus.sequence.length){
+      if( pushNr == gameStatus.sequence[gameStatus.index]
+          && gameStatus.index < gameStatus.sequence.length){
+
         playGoodTone(pushNr);
         gameStatus.lastPush = pushObj;
         gameStatus.index++;
