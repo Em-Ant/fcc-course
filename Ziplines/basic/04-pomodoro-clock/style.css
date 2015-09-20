@@ -1,4 +1,4 @@
-@import url('http://fonts.googleapis.com/css?family=Pacifico|Lato');
+@import url(http://fonts.googleapis.com/css?family=Pacifico|Lato);
 
 html, body, div, span, applet, object, iframe,
  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -9,8 +9,8 @@ html, body, div, span, applet, object, iframe,
  dl, dt, dd, ol, ul, li,
  fieldset, form, label, legend,
  table, caption, tbody, tfoot, thead, tr, th, td,
- article, aside, canvas, details, embed, 
- figure, figcaption, footer, header, hgroup, 
+ article, aside, canvas, details, embed,
+ figure, figcaption, footer, header, hgroup,
  menu, nav, output, ruby, section, summary,
  time, mark, audio, video {
  	margin: 0;
@@ -19,9 +19,8 @@ html, body, div, span, applet, object, iframe,
  	font-size: 100%;
  	font: inherit;
  	vertical-align: baseline;
- 	
- 	   
-   -webkit-user-select: none; /* Chrome/Safari */        
+
+  -webkit-user-select: none; /* Chrome/Safari */
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+ */
 
@@ -43,10 +42,35 @@ body{
   text-align:center;
 }
 
-.pomo{ 
+.wrap {
+  position: relative;
+  width:400px;
+  margin: auto;
+}
+.pomo{
   width : 400px;
 }
 
+.reset {
+  position: relative;
+  display: none;
+  margin: auto;
+  text-align: center;
+  bottom: -5px;
+  right: 15px;
+  margin-left: -25px;
+  width: 200px;
+  height: 30px;
+  left: 50%;
+  margin-left: -102px;
+  border-radius: 12px;
+  border: 3px solid #444;
+}
+
+.reset p {
+  padding-top: 3px;
+  font-size: 18px;
+}
 .pomo img{
   position:relative;
   width:400px;
@@ -107,7 +131,7 @@ body{
   font-size : 3em;
 }
 
-.tgl , .btn{
+.tgl , .btn, .reset{
   cursor: pointer;
 }
 
@@ -154,7 +178,7 @@ body{
 }
 
 .green-border{
-  border-color: #88AA00;  
+  border-color: #88AA00;
 }
 
 .orange-border{
@@ -162,16 +186,32 @@ body{
 }
 
 
+/* Scaling for Mobile */
+@media screen and (max-width: 450px){
 
+  .head {
+    display:none;
+  }
+  .wrap {
+    top: 30px;
 
+    -moz-transform: scale(0.7);
+    -webkit-transform: scale(0.7);
+    transform: scale(0.7);
 
+    -webkit-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    transform-origin: 0 0;
 
+    left: 50%;
+    margin-left: -140px;
+  }
 
+  .reset {
+    display: block;
+  }
 
-
-
-
-
-
-
-
+  #dbcl {
+    display: none;
+  }
+}

@@ -9,8 +9,8 @@ html, body, div, span, applet, object, iframe,
  dl, dt, dd, ol, ul, li,
  fieldset, form, label, legend,
  table, caption, tbody, tfoot, thead, tr, th, td,
- article, aside, canvas, details, embed, 
- figure, figcaption, footer, header, hgroup, 
+ article, aside, canvas, details, embed,
+ figure, figcaption, footer, header, hgroup,
  menu, nav, output, ruby, section, summary,
  time, mark, audio, video {
  	margin: 0;
@@ -18,9 +18,9 @@ html, body, div, span, applet, object, iframe,
  	border: 0;
  	font-size: 100%;
  	font: inherit;
- 	vertical-align: baseline;
-   
-   -webkit-user-select: none; /* Chrome/Safari */        
+ 	vertical-align: middle;
+
+   -webkit-user-select: none; /* Chrome/Safari */
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+ */
 
@@ -50,7 +50,7 @@ div.head h1{
   margin:auto;
   margin-top: 40px;
   width : 400px;
-  
+
 }
 
 .row{
@@ -67,7 +67,7 @@ div.pop-up h3{
 .inline{
   display:inline-block;
   margin:10px 5px;
-  text-align:center;  
+  text-align:center;
 }
 
 .big{
@@ -97,7 +97,6 @@ div.pop-up h3{
 .screen{
   display:none;
   background-color:rgba(10,10,10,0.6);
-  z-index:2;
   position:fixed;
   width: 100%;
   height : 100%;
@@ -111,15 +110,10 @@ div.pop-up h3{
   border-radius: 20px;
   background-color:#fff;
   margin: 0 auto;
-  z-index:10;
-  top  : 85px;
+  top  : 250px;
   left : 50%;
   margin-left: -200px;
   display:none;
-}
-
-.fa {
-  margin-top:15px;
 }
 
 .win{
@@ -139,3 +133,39 @@ div.pop-up h3{
   background-color : #61b2a3;
 }
 
+/* Scaling for Mobile */
+@media screen and (max-width: 450px){
+
+  .head {
+    display:none;
+  }
+  .wrap {
+    top: 30px;
+
+    -moz-transform: scale(0.7);
+    -webkit-transform: scale(0.7);
+    transform: scale(0.7);
+
+    -webkit-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    transform-origin: 0 0;
+
+    left: 50%;
+    margin-left: -140px;
+  }
+
+  .pop-up {
+
+    top: 100px;
+    -moz-transform: scale(0.7);
+    -webkit-transform: scale(0.7);
+    transform: scale(0.7);
+
+    -webkit-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    transform-origin: 0 0;
+
+    left: 50%;
+    margin-left: -140px;
+  }
+}

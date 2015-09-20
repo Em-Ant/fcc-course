@@ -1,4 +1,4 @@
-@import url('http://fonts.googleapis.com/css?family=Cookie');
+@import url(http://fonts.googleapis.com/css?family=Cookie);
 
 html, body, div, span, applet, object, iframe,
  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -9,8 +9,8 @@ html, body, div, span, applet, object, iframe,
  dl, dt, dd, ol, ul, li,
  fieldset, form, label, legend,
  table, caption, tbody, tfoot, thead, tr, th, td,
- article, aside, canvas, details, embed, 
- figure, figcaption, footer, header, hgroup, 
+ article, aside, canvas, details, embed,
+ figure, figcaption, footer, header, hgroup,
  menu, nav, output, ruby, section, summary,
  time, mark, audio, video {
  	margin: 0;
@@ -26,6 +26,16 @@ body{
   font-size : 1.5em;
   color: #444;
   background-color:#e2e2e2;
+}
+
+.wrap {
+  position: relative;
+  width: 678px;
+  margin: auto;
+}
+
+.info {
+  margin-top: 20px;
 }
 
 .loader{
@@ -81,19 +91,19 @@ li{
 
 
 .top{
-	background-image : url("./img/paper_scroll-0-0.png");
+	background-image : url("http://emant.altervista.org/ext/paper_scroll-0-0.png");
 	width: 678px;
 	height: 146px;
 }
 
 .mid{
-	background-image : url("./img/paper_scroll-0-1.png");
+	background-image : url("http://emant.altervista.org/ext/paper_scroll-0-1.png");
 	width: 678px;
   padding : 20px;
 }
 
 .bot{
-	background-image : url("./img/paper_scroll-0-2.png");
+	background-image : url("http://emant.altervista.org/ext/paper_scroll-0-2.png");
 	width: 678px;
 	height: 110px;
 }
@@ -111,4 +121,25 @@ li{
   color: #777;
 }
 
+/* Scaling for Mobile */
+@media screen and (max-width: 700px){
 
+  h1.head {
+    display: none;
+  }
+
+  .wrap {
+    top: 30px;
+
+    -moz-transform: scale(0.7);
+    -webkit-transform: scale(0.7);
+    transform: scale(0.7);
+
+    -webkit-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    transform-origin: 0 0;
+
+    left: 50%;
+    margin-left: -237px;
+  }
+}
