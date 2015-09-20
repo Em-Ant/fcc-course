@@ -1,5 +1,6 @@
 @import url('http://fonts.googleapis.com/css?family=Alfa+Slab+One|VT323|Oswald');
 
+/* Basic Reset */
 html, body, div, span, applet, object, iframe,
  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
  a, abbr, acronym, address, big, cite, code,
@@ -9,8 +10,8 @@ html, body, div, span, applet, object, iframe,
  dl, dt, dd, ol, ul, li,
  fieldset, form, label, legend,
  table, caption, tbody, tfoot, thead, tr, th, td,
- article, aside, canvas, details, embed, 
- figure, figcaption, footer, header, hgroup, 
+ article, aside, canvas, details, embed,
+ figure, figcaption, footer, header, hgroup,
  menu, nav, output, ruby, section, summary,
  time, mark, audio, video {
  	margin: 0;
@@ -19,8 +20,9 @@ html, body, div, span, applet, object, iframe,
  	font-size: 100%;
  	font: inherit;
  	vertical-align: baseline;
-  
-  -webkit-user-select: none; /* Chrome/Safari */        
+
+  /* Disable mouse selection */
+  -webkit-user-select: none; /* Chrome/Safari */
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+ */
 
@@ -30,7 +32,7 @@ html, body, div, span, applet, object, iframe,
  }
 
 html{
- background-image: url('./images/retina_wood.png'); /*from http://cdn.backgroundhost.com/backgrounds/subtlepatterns*/
+ background-image: url('http://cdn.backgroundhost.com/backgrounds/subtlepatterns/retina_wood.png');
 }
 .inline{
   display: inline-block;
@@ -62,7 +64,7 @@ html{
 
 .t-r{
   border-top-right-radius : 100%;
-} 
+}
 
 .wrap{
   width: 472px;
@@ -72,7 +74,7 @@ html{
   text-align: center;
   margin:auto;
   background-color:#333;
-  top:100px;
+  top:10vh;
   box-shadow: 0px 0px 12px #222;
 }
 
@@ -90,7 +92,6 @@ html{
   margin: -122px 0 0  -122px;
   background-color:#ECE7EE;
   border: 12px solid #333;
-
 }
 
 .brand{
@@ -245,4 +246,25 @@ html{
   background-color : #13ff7c;
 }
 
+/* Scaling for Mobile */
+@media screen and (max-width: 500px){
 
+  .wrap {
+    top: 40px;
+
+    -moz-transform: scale(0.6);
+    -ms-transform: scale(0.6);
+    -o-transform: scale(0.6);
+    -webkit-transform: scale(0.6);
+    transform: scale(0.6);
+
+    -o-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    transform-origin: 0 0;
+
+    left: 50%;
+    margin-left: -142px;
+  }
+}
