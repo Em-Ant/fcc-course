@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  
+
   var getData = function(){
     return $.getJSON('http://www.freecodecamp.com/stories/hotStories',function(data){
       return data;
@@ -16,7 +16,7 @@ $(document).ready(function(){
         $(this).attr('src',obj.author.picture);
       else
        $(this).attr('src','https://s3.amazonaws.com/freecodecamp/camper-image-placeholder.png');
-    }).attr('src',pict);    
+    }).attr('src',pict);
     $new_div.append($img);
     $new_div.append($('<h3 class="headline"></h3>').text(obj.headline));
     var discussUrl = "http://www.freecodecamp.com/news/" + obj.storyLink.replace(/\s/g,"-");
@@ -26,12 +26,12 @@ $(document).ready(function(){
       commStr = 'go to discussion';
     }
     $new_div.append($('<a href="'+discussUrl+'" target="_blank"><h3 class="comments">'+commStr+'</h3></a>'));
-    $new_div.append($('<h3 class="author">'+obj.author.username+'</h3>'));
-    $new_div.append($('<div class="upvotes"><h3 class="up-nr">+'+obj.upVotes.length+'</h3></div>'));
+    $new_div.append($('<a class="auth-link" href="http://www.freecodecamp.com/' + obj.author.username + '" target="_blank"><h3 class="author">@'+obj.author.username+'</h3>'));
+    $new_div.append($('<div class="upvotes"><h3 class="up-nr">+'+obj.upVotes.length+'</h3></a></div>'));
     $where.append($new_div);
     $new_div.fadeIn(500);
   };
-  
+
   function showData(data){
           $('#loader').hide();
       var col = 1;
@@ -42,13 +42,13 @@ $(document).ready(function(){
           col = 1;
       });
     }
-  
+
   function showErr(xhr,err){
     $('#loader img').hide();
     $('#loader').text("SORRY, CONNECTION ERROR !");
     console.log(xhr,err);
   }
-  
+
   getData().then(showData,showErr);
 
 });

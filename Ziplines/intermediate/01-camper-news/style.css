@@ -78,7 +78,24 @@ a.element .author{
   color: #D76E79;
 }
 
+a h3 {
+  transition: color 0.2s;
+}
+a .author:hover {
+  color: #F22613;
+  text-decoration: none;
+}
+
+a .comments:hover {
+  color: #34495E;
+  text-decoration: none;
+}
+
 a.element .headline{
   font-size:1.2em;
   padding: 10px 15px;
+}
+
+a:hover {
+  text-decoration: none;
 }
