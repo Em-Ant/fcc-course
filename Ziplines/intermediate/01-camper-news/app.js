@@ -18,7 +18,7 @@ $(document).ready(function(){
        $(this).attr('src','https://s3.amazonaws.com/freecodecamp/camper-image-placeholder.png');
     }).attr('src',pict);
     $new_div.append($img);
-    $new_div.append($('<h3 class="headline"></h3>').text(obj.headline));
+    $new_div.append($('<h3 class="headline"></h3>').text(obj.headline.replace(/&amp;/g,'&').replace(/&quot;/g,'\"'))); //fix some special chars
     var discussUrl = "http://www.freecodecamp.com/news/" + obj.storyLink.replace(/\s/g,"-");
     if(obj.comments){
       var commStr = obj.comments.length+' comments';
