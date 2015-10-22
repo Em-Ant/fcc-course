@@ -13,7 +13,7 @@
 * - OpenWeatherMap API
 * - ip-api.com for geolocation
 * - Google Fonts
-* - Weather Icons from Erik Flowers
+* - Weather Icons by Erik Flowers
 * - Font Awesome (the spinning preloader)
 *
 * A version using JQuery as JavaScript framework
@@ -58,7 +58,7 @@ angular.module('weatherApp')
     var location = city + ',' + countryCode;
     return $http({
       method: 'GET',
-      url: 'http://api.openweathermap.org/data/2.5/weather',
+      url: encodeUrl('http://api.openweathermap.org/data/2.5/weather'),
       params: {
         q: location,
         units: units
@@ -201,7 +201,6 @@ angular.module('weatherApp')
       };
 
    initializeData();
-
   /* TODO :
   * handle errors in promises chaining
   */

@@ -32,7 +32,9 @@ $(document).ready(function(){
     position : ''
   }
 
-  var getPosition = function (options) {
+  var weatherData;
+
+  var getPosition = function () {
     return $.get("http://ip-api.com/json", function (response) {
       queryOptions.position = {
         lat : response.lat,
@@ -44,14 +46,15 @@ $(document).ready(function(){
   };
 
   var getWeather = function() {
-    var baseUrl = "http://api.openweathermap.org/data/2.5/weather?";
-    var queryUrl = baseUrl + 'units=' + queryOptions.units + '&q=' +
- queryOptions.position.city + ',' + queryOptions.position.countryCode;
+    var baseUrl = 'http://api.openweathermap.org/data/2.5/weather';
+    var queryUrl = encodeUrl(baseUrl) + '&q=' + queryOptions.position.city + ',' + queryOptions.position.countryCode + '&units=' + queryOptions.units;
     return $.getJSON(queryUrl);
   }
 
 
   var displayData = function(data){
+
+    weatherData = data;
 
     if(queryOptions.units === 'imperial'){
       var tempUnits = 'wi wi-fahrenheit';
@@ -80,8 +83,8 @@ $(document).ready(function(){
       $('#D').text(data.weather[0].description);
       $('#T').text(Math.round(data.main.temp*2)/2);
       $("#T-units").removeClass().addClass(tempUnits);
-      $("#P").text(data.main.pressure);
-      $("#H").text(data.main.humidity);
+      $("#P").text(Math.round(data.main.pressure));
+      $("#H").text(Math.round(data.main.humidity));
       $("#W").text(Math.round(data.wind.speed*2)/2);
       $("#W-dir").removeClass().addClass('wi wi-wind towards-'+Math.round(data.wind.deg)+'-deg');
       $("#W-units").text(speedUnits);
@@ -89,9 +92,10 @@ $(document).ready(function(){
       $('.view').fadeIn();
     });
 
-    /* if it's the startUp query select the appropriate BG. I used low-res images
-    to save bandwidth and improve loading time. They can be replaced with better ones,
-    for production version*/
+    /* If it's the startUp query select the appropriate BG.
+    I used low-res images to save bandwidth and improve loading time.
+    They can be replaced with better ones for production version */
+
     if(firstQuery){
       if(data.main.temp > 30)
         $('body').css('background-image','url(http://emant.altervista.org/ext/w_bg_4.jpg)');
@@ -104,10 +108,10 @@ $(document).ready(function(){
       $('.preloader').fadeOut();
       firstQuery = false;
     }
-    $('body').css('background-size','cover')
+    $('body').css('background-size','cover');
   };
 
-  function displayErr(){
+  function displayErr(xhr,err){
     $('.view').hide();
     $('#city').text('------');
     $('#w-icon').removeClass().addClass('wi wi-na');
@@ -122,7 +126,7 @@ $(document).ready(function(){
     $('.view').fadeIn();
   }
 
-  /* toggle units and perform a new query for weather
+  /* toggle units and perform a new query for weather -
   I could have written a func to convert values,
   but this is easier, even if there could be differences in
   the data reported */
