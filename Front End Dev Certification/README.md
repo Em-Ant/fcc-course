@@ -1,4 +1,4 @@
-# freeCodeCamp Challenges for the Back End Development Certification
+# freeCodeCamp Challenges for the Front End Development Certification
 ### Algorythm and Interactive Projects
 
 This is a local copy of my solutions to the front-end development problems for the [freeCodeCamp](http://www.freecodecamp.com/map) **Front End Development Certification** course.
