@@ -7,7 +7,7 @@
   * App link on Heroku : http://emant-timestamp.herokuapp.com/
   * Github repository : https://github.com/Em-Ant/FCC_Timestamp/
 
----
+--
 
 ### Dynamic Web Applications
 
