@@ -7,6 +7,14 @@
  * App link on Heroku : http://emant-timestamp.herokuapp.com/
  * Github repository : https://github.com/Em-Ant/FCC_Timestamp/
 
+2. **Request Header Parser Microservice**
+ * App link on Heroku : http://emant-reqhead.herokuapp.com/
+ * Github repository : https://github.com/Em-Ant/fcc_requestheader
+
+ 3. **URL Shortener Microservice**
+  * App link on Heroku : http://emant-shorturl.herokuapp.com/
+  * Github repository : https://github.com/Em-Ant/fcc_shorturl
+  
 --
 
 ### Dynamic Web Applications
