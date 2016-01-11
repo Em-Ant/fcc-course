@@ -11,17 +11,17 @@
  * App link on Heroku : http://emant-reqhead.herokuapp.com/
  * Github repository : https://github.com/Em-Ant/fcc_requestheader
 
- 3. **URL Shortener Microservice**
-  * App link on Heroku : http://emant-shorturl.herokuapp.com/
-  * Github repository : https://github.com/Em-Ant/fcc_shorturl
+3. **URL Shortener Microservice**
+ * App link on Heroku : http://emant-shorturl.herokuapp.com/
+ * Github repository : https://github.com/Em-Ant/fcc_shorturl
 
- 4. **Image Search Abstraction Layer**
-  * App link on Heroku : http://emant-imgsearch.herokuapp.com/
-  * Github repository : https://github.com/Em-Ant/fcc_imgsearch
+4. **Image Search Abstraction Layer**
+ * App link on Heroku : http://emant-imgsearch.herokuapp.com/
+ * Github repository : https://github.com/Em-Ant/fcc_imgsearch
 
- 5. **File Metadata Microservice**
-  * App link on Heroku : http://emant-filemetadata.herokuapp.com/
-  * Github repository : https://github.com/Em-Ant/fcc_filemetadata
+5. **File Metadata Microservice**
+ * App link on Heroku : http://emant-filemetadata.herokuapp.com/
+ * Github repository : https://github.com/Em-Ant/fcc_filemetadata
 
 --
 
@@ -30,7 +30,6 @@
 1. **Build a Voting App**
  * App link on Heroku : http://vote-plex.herokuapp.com/
  * Github repository : https://github.com/Em-Ant/vote-app
-
 
 2. **Manage a Book Trading Club** (Under Development)
  * App link on Heroku : http://tbtc.herokuapp.com/
