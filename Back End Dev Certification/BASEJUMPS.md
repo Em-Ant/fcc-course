@@ -14,7 +14,15 @@
  3. **URL Shortener Microservice**
   * App link on Heroku : http://emant-shorturl.herokuapp.com/
   * Github repository : https://github.com/Em-Ant/fcc_shorturl
-  
+
+ 4. **Image Search Abstraction Layer**
+  * App link on Heroku : http://emant-imgsearch.herokuapp.com/
+  * Github repository : https://github.com/Em-Ant/fcc_imgsearch
+
+ 5. **File Metadata Microservice**
+  * App link on Heroku : http://emant-filemetadata.herokuapp.com/
+  * Github repository : https://github.com/Em-Ant/fcc_filemetadata
+
 --
 
 ### Dynamic Web Applications
