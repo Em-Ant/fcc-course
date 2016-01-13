@@ -22,10 +22,10 @@ var parseMarkdown = function(text) {
 var Previewer = React.createClass({
   getInitialState: function() {
     return {
-      text: "### Markdown Previewer\nfor [freeCodeCamp](http://www.freecodecamp.com)\n"
+      text: "### Markdown Previewer\nby [em-ant@freeCodeCamp](http://www.freecodecamp.com/em-ant)\n"
         + "___\n ** Hello **, *Markdown* !\n"
-        + "```js\nconsole.log('hello, world');\n```\n"
-        + "1. Hello\n * World"
+        + "```js\nconsole.log('hello, markdown');\n```\n"
+        + "1. Hello\n * Markdown"
     }
   },
   change: function(event) {
@@ -33,6 +33,7 @@ var Previewer = React.createClass({
   },
   render: function() {
     return (
+      <div className="container">
       < div className="row">
             <div className="col-md-6">
               <textarea id="in"  onChange={this.change} defaultValue={this.state.text}/>
@@ -41,12 +42,12 @@ var Previewer = React.createClass({
               <div id="out" dangerouslySetInnerHTML={parseMarkdown(this.state.text)}/>
             </div>
       < /div>
+      </div>
     );
   }
 });
 
-React.render( < Previewer / > , document.getElementById("container"));
-
+React.render( < Previewer / > , document.getElementById("view"));
 
 
 *************************************************
@@ -76,7 +77,7 @@ var Previewer = React.createClass({
 
   getInitialState: function getInitialState() {
     return {
-      text: "### Markdown Previewer\nfor [freeCodeCamp](http://www.freecodecamp.com)\n" + "___\n ** Hello **, *Markdown* !\n" + "```js\nconsole.log('hello, world');\n```\n" + "1. Hello\n * World"
+      text: "### Markdown Previewer\nby [em-ant@freeCodeCamp](http://www.freecodecamp.com/em-ant)\n" + "___\n ** Hello **, *Markdown* !\n" + "```js\nconsole.log('hello, markdown');\n```\n" + "1. Hello\n * Markdown"
     };
   },
   change: function change(event) {
@@ -85,19 +86,23 @@ var Previewer = React.createClass({
   render: function render() {
     return React.createElement(
       "div",
-      { className: "row" },
+      { className: "container" },
       React.createElement(
         "div",
-        { className: "col-md-6" },
-        React.createElement("textarea", { id: "in", onChange: this.change, defaultValue: this.state.text })
-      ),
-      React.createElement(
-        "div",
-        { className: "col-md-6" },
-        React.createElement("div", { id: "out", dangerouslySetInnerHTML: parseMarkdown(this.state.text) })
+        { className: "row" },
+        React.createElement(
+          "div",
+          { className: "col-md-6" },
+          React.createElement("textarea", { id: "in", onChange: this.change, defaultValue: this.state.text })
+        ),
+        React.createElement(
+          "div",
+          { className: "col-md-6" },
+          React.createElement("div", { id: "out", dangerouslySetInnerHTML: parseMarkdown(this.state.text) })
+        )
       )
     );
   }
 });
 
-React.render(React.createElement(Previewer, null), document.getElementById("container"));
+React.render(React.createElement(Previewer, null), document.getElementById("view"));
