@@ -1,0 +1,325 @@
+
+/********** SASS VERSION ***************
+
+@import url(//fonts.googleapis.com/css?family=Baumans)
+
+$box-width: 350px
+$box-height: 400px
+$box-bg: shade(#68C3A3, 15%)
+
+h1, h2, h3, h4, h5, h6
+  font-weight: normal
+
+.bb
+  box-sizing: border-box
+  -moz-box-sizing: border-box
+  -ms-box-sizing: border-box
+  -webkit-box-sizing: border-box
+  -khtml-box-sizing: border-box
+
+
+.hidden
+  display: none
+
+body
+  background-color: $box-bg
+  font-family: "Baumans", sans
+
+.thebox
+  position: relative
+  top: 30px
+  max-width: $box-width
+  height: $box-height
+  background-color: #f6f6f6
+  margin: 20px auto
+  border-radius: $box-width/15
+  padding: 20px 0
+  color:  shade($box-bg, 30%)
+
+.recipe_add
+  text-align: center
+  width: 80%
+  margin: auto
+  position: relative
+  .squared
+    top: -40px
+
+.inp
+  @extend .bb
+  display: block
+  width: 100%
+  border: 2px solid tint($box-bg, 50%)
+  background: transparent
+  border-radius: 10px
+  padding: 10px
+  &:focus
+    border-color: $box-bg
+
+input
+  @extend .inp
+  text-align: center
+  font-size: 1.4em
+  margin-top: 50px
+
+textarea
+  @extend .inp
+  margin-top: 20px
+  height: 170px
+  resize: none
+
+.btn
+  transition: all, 0.2s
+  cursor: pointer
+
+=square($size)
+  height: $size
+  width: $size
+
+.squared
+  @extend .btn
+  +square(21px)
+  color: $box-bg
+  border: 2px solid tint($box-bg, 20%)
+  border-radius: 6px
+  position: absolute
+  right: 0px
+  text-align: center
+  top: -0px
+  &:hover
+    background-color: tint($box-bg, 80%)
+
+
+$roundBtnSize: 60px
+
+.round
+  @extend .btn
+  color: #f6f6f6
+  background-color: $box-bg
+  +square($roundBtnSize)
+  border-radius: 50%
+  text-align: center
+  margin: auto
+  cursor:pointer
+  position: absolute
+  left: 50%
+  margin-left: -30px
+  bottom: 15px
+  &:hover
+    background-color: shade($box-bg, 20%)
+  h1
+    font-size: 35px
+    position: absolute
+    width: 100%
+    height: 100%
+    text-align: center
+    top: -12px
+
+
+.recipe_list
+  h2
+    text-align: center
+  div.listentry
+    position: relative
+    @extend .btn
+    height: 30px
+    padding: 10px 0 10px 30px
+    .squared
+      right: 30px
+      top: 14px
+      opacity: 0
+      &:hover
+        color: #f6f6f6
+        background-color: tint($box-bg,20%)
+    h3
+      position: relative
+      top: -15px
+    &:hover
+      background-color: tint($box-bg, 80%)
+      .squared
+        display: block
+        opacity: 1
+
+.empty_info
+  text-align: center
+  font-size: 1.1em
+
+.list_cont
+  height: 250px
+  overflow: auto
+  overflow-x: hidden
+
+
+$redborder: #E26A6A
+
+.invalid
+  border-color: tint($redborder, 40%)
+  &:focus
+    border-color: $redborder
+
+
+
+****************************************
+****** COMPILED CSS below *************/
+
+/* WARNING!!! : This StyleSheet is a total mess, */
+/* Hope to re-structure it soon */
+@import url("https://fonts.googleapis.com/css?family=Baumans");
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+}
+
+.bb, .inp, input, textarea {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -khtml-box-sizing: border-box;
+}
+
+.hidden {
+  display: none;
+}
+
+body {
+  background-color: #58a68b;
+  font-family: "Baumans", sans;
+}
+
+.thebox {
+  position: relative;
+  top: 30px;
+  max-width: 350px;
+  height: 400px;
+  background-color: #f6f6f6;
+  margin: 20px auto;
+  border-radius: 23.33333px;
+  padding: 20px 0;
+  color: #3e7461;
+}
+
+.recipe_add {
+  text-align: center;
+  width: 80%;
+  margin: auto;
+  position: relative;
+}
+.recipe_add .squared {
+  top: -40px;
+}
+
+.inp, input, textarea {
+  display: block;
+  width: 100%;
+  border: 2px solid #acd3c5;
+  background: transparent;
+  border-radius: 10px;
+  padding: 10px;
+}
+.inp:focus, input:focus, textarea:focus {
+  border-color: #58a68b;
+}
+
+input {
+  text-align: center;
+  font-size: 1.4em;
+  margin-top: 50px;
+}
+
+textarea {
+  margin-top: 20px;
+  height: 170px;
+  resize: none;
+}
+
+.btn, .squared, .round, .recipe_list div.listentry {
+  -webkit-transition: all, 0.2s;
+  transition: all, 0.2s;
+  cursor: pointer;
+}
+
+.squared {
+  height: 21px;
+  width: 21px;
+  color: #58a68b;
+  border: 2px solid #79b8a2;
+  border-radius: 6px;
+  position: absolute;
+  right: 0px;
+  text-align: center;
+  top: 0px;
+}
+.squared:hover {
+  background-color: #deede8;
+}
+
+.round {
+  color: #f6f6f6;
+  background-color: #58a68b;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  text-align: center;
+  margin: auto;
+  position: absolute;
+  left: 50%;
+  margin-left: -30px;
+  bottom: 15px;
+}
+.round:hover {
+  background-color: #46856f;
+}
+.round h1 {
+  font-size: 35px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  top: -12px;
+}
+
+.recipe_list h2 {
+  text-align: center;
+}
+.recipe_list div.listentry {
+  position: relative;
+  height: 30px;
+  padding: 10px 0 10px 30px;
+}
+.recipe_list div.listentry .squared {
+  right: 30px;
+  top: 14px;
+  opacity: 0;
+}
+.recipe_list div.listentry .squared:hover {
+  color: #f6f6f6;
+  background-color: #79b8a2;
+}
+.recipe_list div.listentry h3 {
+  position: relative;
+  top: -15px;
+}
+.recipe_list div.listentry:hover {
+  background-color: #deede8;
+}
+.recipe_list div.listentry:hover .squared {
+  display: block;
+  opacity: 1;
+}
+
+.empty_info {
+  text-align: center;
+  font-size: 1.1em;
+}
+
+.list_cont {
+  height: 250px;
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+.invalid {
+  border-color: #eea6a6;
+}
+.invalid:focus {
+  border-color: #E26A6A;
+}
