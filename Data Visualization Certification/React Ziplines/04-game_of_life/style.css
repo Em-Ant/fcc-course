@@ -1,0 +1,206 @@
+
+/********** SASS VERSION ***************
+
+@import url(https://fonts.googleapis.com/css?family=Comfortaa)
+
+// COLORS
+$bodybg: desaturate(#89C4F4, 20%)
+$deadcellbg: #333
+$youngcellbg: #F4D03F
+$oldcellbg: #F89406
+$cellborder: #ABB7B7
+
+$textandborders: darken($deadcellbg, 10%)
+
+// DIMENSIONS
+$rows: 20
+$cols: 30
+$cellside: 18px
+
+$boardwidth: $cellside * $cols
+$boardheight: $cellside * $rows
+
+=cellhover ($col)
+  &:hover
+    background-color: tint($col, 20%)
+
+body
+  background-color: $bodybg
+  font-family: "Comfortaa", sans
+  color: $textandborders
+
+.board
+  height: $boardheight
+  width: $boardwidth
+  position: relative
+  margin: auto
+
+.board-panel
+  position: relative
+  top: 25px
+
+.display-panel
+  width: $boardwidth + 60px
+  height: $boardheight + 220px
+  border: 1px solid
+  position: relative
+  margin: auto
+  border-radius: 30px
+  top: 40px
+  h1
+    font-size: 28px
+    text-align: center
+    padding-top: 20px
+
+.cell
+  display: inline-block
+  height: $cellside - 2px
+  width: $cellside - 2px
+  background-color: $deadcellbg
+  border: 1px solid $cellborder
+  border-top: none
+  cursor: pointer
+  border-radius: 15%
+  transition: background-color 0.1s
+  +cellhover($deadcellbg)
+
+.young
+  background-color: $youngcellbg
+  +cellhover($youngcellbg)
+
+
+.old
+  background-color: $oldcellbg
+  +cellhover($oldcellbg)
+
+.boardrow
+  height: $cellside
+
+.button-panel
+  width: 420px
+  position: relative
+  margin: auto
+  top: 20px
+
+.btn
+  height: 18px
+  width: 98px
+  font-size: 20px
+  border: 1px solid
+  text-align: center
+  padding: 10px
+  border-radius: 10px
+  display: inline-block
+  margin: 10px
+  cursor: pointer
+  transition: background-color 0.1s
+  &:hover
+    background-color: lighten($bodybg, 10%)
+  &:active
+    background-color: lighten($bodybg, 20%)
+
+.out
+  text-align: center
+  padding-top: 20px
+
+****************************************
+****** COMPILED CSS below *************/
+
+@import url(https://fonts.googleapis.com/css?family=Comfortaa);
+body {
+  background-color: #96c3e7;
+  font-family: "Comfortaa", sans;
+  color: #1a1a1a;
+}
+
+.board {
+  height: 360px;
+  width: 540px;
+  position: relative;
+  margin: auto;
+}
+
+.board-panel {
+  position: relative;
+  top: 25px;
+}
+
+.display-panel {
+  width: 600px;
+  height: 580px;
+  border: 1px solid;
+  position: relative;
+  margin: auto;
+  border-radius: 30px;
+  top: 40px;
+}
+.display-panel h1 {
+  font-size: 28px;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.cell {
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+  background-color: #333;
+  border: 1px solid #ABB7B7;
+  border-top: none;
+  cursor: pointer;
+  border-radius: 15%;
+  transition: background-color 0.1s;
+}
+.cell:hover {
+  background-color: #5c5c5c;
+}
+
+.young {
+  background-color: #F4D03F;
+}
+.young:hover {
+  background-color: #f6d965;
+}
+
+.old {
+  background-color: #F89406;
+}
+.old:hover {
+  background-color: #f9a938;
+}
+
+.boardrow {
+  height: 18px;
+}
+
+.button-panel {
+  width: 420px;
+  position: relative;
+  margin: auto;
+  top: 20px;
+}
+
+.btn {
+  height: 18px;
+  width: 98px;
+  font-size: 20px;
+  border: 1px solid;
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  display: inline-block;
+  margin: 10px;
+  cursor: pointer;
+  transition: background-color 0.1s;
+}
+.btn:hover {
+  background-color: #bfdbf1;
+}
+.btn:active {
+  background-color: #e9f2fa;
+}
+
+.out {
+  text-align: center;
+  padding-top: 20px;
+}
