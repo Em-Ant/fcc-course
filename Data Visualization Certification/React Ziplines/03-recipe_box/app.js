@@ -1,6 +1,7 @@
 
 /** JSX **********************************************************************
 
+
 var RecipeForm = React.createClass({
   getInitialState: function () {
     return {recipe: true, ingredients: true};
@@ -37,6 +38,9 @@ var RecipeForm = React.createClass({
     this.refs.ingredients.value = obj.ingredients;
   },
   close: function () {
+
+    // directly resetting the state when closing. No need to re-render !
+    this.state = {recipe: true, ingredients: true};
     this.props.closefn();
   },
   render: function() {
@@ -197,7 +201,7 @@ var Box = React.createClass({
 React.render(<Box/>,document.getElementById('view'));
 
 *****************************************************************************/
-/**** COMPILED **************************************************************/
+/**** COMPILED JS ES5 (Babel) ***********************************************/
 
 'use strict';
 
@@ -239,6 +243,9 @@ var RecipeForm = React.createClass({
     this.refs.ingredients.value = obj.ingredients;
   },
   close: function close() {
+
+    // directly resetting the state when closing. No need to re-render !
+    this.state = { recipe: true, ingredients: true };
     this.props.closefn();
   },
   render: function render() {
