@@ -80,20 +80,23 @@ var DataTable = React.createClass({
     }
 
     return (
-      <table className="table table-striped table-bordered table-condensed text-center">
-       <thead>
-         <tr>
-            <th>#</th>
-            <th>Avatar</th>
-            <th>Username</th>
-            <th onClick={this.handleClick.bind(null,'recent')} className={this.state.sortedBy ? (this.state.sortedBy =='recent' ? 'clickable sortedby' : 'clickable') : ''}>Recent</th>
-            <th onClick={this.handleClick.bind(null,'alltime')} className={this.state.sortedBy ? (this.state.sortedBy == 'recent' ? 'clickable' : 'clickable sortedby') : ''}>Alltime</th>
-          </tr>
-       </thead>
-       <tbody>
-       {tableElems}
-       </tbody>
-      </table>
+      <div>
+        <table className="table table-striped table-bordered table-condensed text-center">
+         <thead>
+           <tr>
+              <th>#</th>
+              <th>Avatar</th>
+              <th>Username</th>
+              <th onClick={this.handleClick.bind(null,'recent')} className={this.state.sortedBy ? (this.state.sortedBy =='recent' ? 'clickable sortedby' : 'clickable') : ''}>Recent</th>
+              <th onClick={this.handleClick.bind(null,'alltime')} className={this.state.sortedBy ? (this.state.sortedBy == 'recent' ? 'clickable' : 'clickable sortedby') : ''}>Alltime</th>
+            </tr>
+         </thead>
+         <tbody>
+         {tableElems}
+         </tbody>
+        </table>
+        <p className={tableElems.length ? 'hidden' : 'info'}>Loading...</p>
+      </div>
       )
     }
 });
@@ -103,7 +106,7 @@ var App = React.createClass({
   return (
     <div>
       <div className="header">
-        <h1>Camper Leaderboard<br/><small>by <a href="http:/www.freecodecamp.com/em-ant" target="_blank">em-ant</a> for freeCodeCamp</small></h1>
+        <h1>Camper Leaderboard<br/><small>by <a href="http://www.freecodecamp.com/em-ant" target="_blank">em-ant</a> for freeCodeCamp</small></h1>
       </div>
       <div className="container">
         <DataTable/>
@@ -223,45 +226,54 @@ var DataTable = React.createClass({
     }
 
     return React.createElement(
-      "table",
-      { className: "table table-striped table-bordered table-condensed text-center" },
+      "div",
+      null,
       React.createElement(
-        "thead",
-        null,
+        "table",
+        { className: "table table-striped table-bordered table-condensed text-center" },
         React.createElement(
-          "tr",
+          "thead",
           null,
           React.createElement(
-            "th",
+            "tr",
             null,
-            "#"
-          ),
-          React.createElement(
-            "th",
-            null,
-            "Avatar"
-          ),
-          React.createElement(
-            "th",
-            null,
-            "Username"
-          ),
-          React.createElement(
-            "th",
-            { onClick: this.handleClick.bind(null, 'recent'), className: this.state.sortedBy ? this.state.sortedBy == 'recent' ? 'clickable sortedby' : 'clickable' : '' },
-            "Recent"
-          ),
-          React.createElement(
-            "th",
-            { onClick: this.handleClick.bind(null, 'alltime'), className: this.state.sortedBy ? this.state.sortedBy == 'recent' ? 'clickable' : 'clickable sortedby' : '' },
-            "Alltime"
+            React.createElement(
+              "th",
+              null,
+              "#"
+            ),
+            React.createElement(
+              "th",
+              null,
+              "Avatar"
+            ),
+            React.createElement(
+              "th",
+              null,
+              "Username"
+            ),
+            React.createElement(
+              "th",
+              { onClick: this.handleClick.bind(null, 'recent'), className: this.state.sortedBy ? this.state.sortedBy == 'recent' ? 'clickable sortedby' : 'clickable' : '' },
+              "Recent"
+            ),
+            React.createElement(
+              "th",
+              { onClick: this.handleClick.bind(null, 'alltime'), className: this.state.sortedBy ? this.state.sortedBy == 'recent' ? 'clickable' : 'clickable sortedby' : '' },
+              "Alltime"
+            )
           )
+        ),
+        React.createElement(
+          "tbody",
+          null,
+          tableElems
         )
       ),
       React.createElement(
-        "tbody",
-        null,
-        tableElems
+        "p",
+        { className: tableElems.length ? 'hidden' : 'info' },
+        "Loading..."
       )
     );
   }
@@ -288,7 +300,7 @@ var App = React.createClass({
             "by ",
             React.createElement(
               "a",
-              { href: "http:/www.freecodecamp.com/em-ant", target: "_blank" },
+              { href: "http://www.freecodecamp.com/em-ant", target: "_blank" },
               "em-ant"
             ),
             " for freeCodeCamp"
