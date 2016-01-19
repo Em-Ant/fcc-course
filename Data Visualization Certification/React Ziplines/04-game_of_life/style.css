@@ -3,12 +3,23 @@
 
 @import url(https://fonts.googleapis.com/css?family=Comfortaa)
 
+// Disable User Selection
+*
+  -webkit-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+
+  // Rules below not implemented in browsers yet
+  -o-user-select: none
+  user-select: none
+
+
 // COLORS
 $bodybg: desaturate(#89C4F4, 20%)
 $deadcellbg: #333
 $youngcellbg: #F4D03F
 $oldcellbg: #F89406
-$cellborder: #ABB7B7
+$cellborder: $bodybg
 
 $textandborders: darken($deadcellbg, 10%)
 
@@ -21,8 +32,9 @@ $boardwidth: $cellside * $cols
 $boardheight: $cellside * $rows
 
 =cellhover ($col)
+  cursor: pointer
   &:hover
-    background-color: tint($col, 20%)
+    background-color: lighten($col, 25%)
 
 body
   background-color: $bodybg
@@ -58,19 +70,22 @@ body
   width: $cellside - 2px
   background-color: $deadcellbg
   border: 1px solid $cellborder
-  border-top: none
-  cursor: pointer
   border-radius: 15%
   transition: background-color 0.1s
+
+.cell.clickable
   +cellhover($deadcellbg)
 
 .young
   background-color: $youngcellbg
-  +cellhover($youngcellbg)
 
+.young.clickable
+  +cellhover($youngcellbg)
 
 .old
   background-color: $oldcellbg
+
+.old.clickable
   +cellhover($oldcellbg)
 
 .boardrow
@@ -103,10 +118,42 @@ body
   text-align: center
   padding-top: 20px
 
+
+// Scaling for Mobile
+@media screen and (max-width: 600px)
+
+  .display-panel
+    top: 40px
+
+    -moz-transform: scale(0.55)
+    -ms-transform: scale(0.55)
+    -o-transform: scale(0.55)
+    -webkit-transform: scale(0.55)
+    transform: scale(0.55)
+
+    -o-transform-origin: 0 0
+    -ms-transform-origin: 0 0
+    -webkit-transform-origin: 0 0
+    -moz-transform-origin: 0 0
+    transform-origin: 0 0
+
+    left: 50%
+    margin-left: -166px
+
+
 ****************************************
 ****** COMPILED CSS below *************/
 
 @import url(https://fonts.googleapis.com/css?family=Comfortaa);
+* {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  /* Rules below not implemented in browsers yet */
+  -o-user-select: none;
+  user-select: none;
+}
+
 body {
   background-color: #96c3e7;
   font-family: "Comfortaa", sans;
@@ -145,28 +192,38 @@ body {
   height: 16px;
   width: 16px;
   background-color: #333;
-  border: 1px solid #ABB7B7;
-  border-top: none;
-  cursor: pointer;
+  border: 1px solid #96c3e7;
   border-radius: 15%;
   transition: background-color 0.1s;
 }
-.cell:hover {
-  background-color: #5c5c5c;
+
+.cell.clickable {
+  cursor: pointer;
+}
+.cell.clickable:hover {
+  background-color: #737373;
 }
 
 .young {
   background-color: #F4D03F;
 }
-.young:hover {
-  background-color: #f6d965;
+
+.young.clickable {
+  cursor: pointer;
+}
+.young.clickable:hover {
+  background-color: #fbeeb8;
 }
 
 .old {
   background-color: #F89406;
 }
-.old:hover {
-  background-color: #f9a938;
+
+.old.clickable {
+  cursor: pointer;
+}
+.old.clickable:hover {
+  background-color: #fcc982;
 }
 
 .boardrow {
@@ -203,4 +260,23 @@ body {
 .out {
   text-align: center;
   padding-top: 20px;
+}
+
+/* Scaling for Mobile */
+@media screen and (max-width: 600px) {
+  .display-panel {
+    top: 40px;
+    -moz-transform: scale(0.55);
+    -ms-transform: scale(0.55);
+    -o-transform: scale(0.55);
+    -webkit-transform: scale(0.55);
+    transform: scale(0.55);
+    -o-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    transform-origin: 0 0;
+    left: 50%;
+    margin-left: -166px;
+  }
 }

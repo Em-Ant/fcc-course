@@ -14,6 +14,24 @@ var randomBoard = function (rows, cols) {
   return matrix;
 };
 
+var cloneMatrix = function (m) {
+  var mOut = [];
+  m.forEach(function(arr) {
+   mOut.push(arr.slice(0));
+  })
+  return mOut;
+};
+
+var diffMatrix = function (m1, m2) {
+  for (var i = 0; i < m1.length; i++) {
+    for (var j= 0; j<m1[0].length; j++) {
+      if ((m1[i][j] > 0 || m2[i][j] > 0) && !(m1[i][j] > 0 && m2[i][j]) > 0)
+        return true
+    }
+  }
+  return false;
+};
+
 var emptyBoard = function (rows, cols) {
   var matrix = [];
     for (var i = 0; i < rows; i++) {
@@ -29,25 +47,27 @@ var emptyBoard = function (rows, cols) {
 var aliveCount = function (i,j,matrix) {
   // count the living cells around
   var count = 0;
-  var rmin = -1, rmax = 1, cmin = -1, cmax = 1;
-  if (i === 0) rmin = 0;
-  else if (i === matrix.length - 1) rmax = 0;
-  if (j === 0) cmin = 0;
-  else if (j === matrix[0].length -1) cmax = 0;
-
-  for (var k = rmin; k <= rmax; k++) {
-    for (var l = cmin; l <= cmax; l++) {
+  // Periodic Boundaries
+  var rInd = [-1, 0, 1], cInd = [-1, 0 , 1];
+  if (i === 0) rInd[0] = matrix.length - 1;
+  else if (i === matrix.length - 1) rInd[2] = -i;
+  if (j === 0) cInd[0] = matrix[0].length - 1;
+  else if (j === matrix[0].length - 1) cInd[2] = -j;
+  rInd.forEach(function(k) {
+    cInd.forEach(function(l) {
       if (!(k === 0 && l === 0))
         if(matrix[i+k][j+l]) count++;
-    }
-  }
+    })
+  });
   return count;
+
 };
 
 var computeNextGen = function (matrix) {
   var newMatrix = [];
   var rows = matrix.length;
   var cols = matrix[0].length;
+  var unchanged = true;
   for (var i = 0; i < rows; i++ ) {
     var row = [];
     for (var j = 0; j < cols; j++) {
@@ -63,11 +83,16 @@ var computeNextGen = function (matrix) {
         if (count === 3)
           newCell = 1;
       }
+      if( newCell - matrix[i][j] !== 0)
+        unchanged = false;
       row.push(newCell);
     }
     newMatrix.push(row);
   }
-  return newMatrix;
+  return {
+    matrix: newMatrix,
+    changed: !unchanged
+  }
 };
 
 var CellRow = React.createClass({
@@ -76,8 +101,9 @@ var CellRow = React.createClass({
     this.props.clickCb(this.props.row, ind)
   },
   render : function () {
-    var rowCells = this.props.rowArray.map(function(el,ind){
+      var rowCells = this.props.rowArray.map(function(el,ind){
       var cellClasses = (el ? (el === 1 ? 'young'  : 'old') : '') + ' cell';
+      cellClasses += this.props.running  ? '' : ' clickable';
       return (
         <div className={cellClasses} onClick={this.click.bind(null,ind)}></div>
       );
@@ -94,7 +120,12 @@ var Board = React.createClass({
   render : function () {
     var rows = this.props.boardMatrix.map(function(el,ind){
       return (
-        <CellRow rowArray={el} row={ind} clickCb={this.props.clickCb}/>
+        <CellRow
+          rowArray={el}
+          row={ind}
+          clickCb={this.props.clickCb}
+          running={this.props.running}
+        />
       )
     }.bind(this));
     return (
@@ -109,7 +140,8 @@ var GameApp = React.createClass({
   getDefaultProps: function () {
     return {
       rows: 20,
-      cols: 30
+      cols: 30,
+      timeout: 500
     }
   },
   getInitialState: function () {
@@ -121,30 +153,45 @@ var GameApp = React.createClass({
     }
   },
   editCell: function (row, col) {
-    var boardState = this.state.cellMatrix;
-    boardState[row][col] = boardState[row][col] ? 0 : 1;
-    this.setState({cellMatrix: boardState})
+    if (!this.state.running) {
+      var boardState = this.state.cellMatrix;
+      boardState[row][col] = boardState[row][col] ? 0 : 1;
+      this.setState({cellMatrix: boardState})
+    }
   },
   nextGen: function () {
-    var newMatrix = computeNextGen(this.state.cellMatrix);
-    var gen = this.state.generation;
-    this.setState({
-      generation: ++gen,
-      cellMatrix: newMatrix
-    });
+    var newGen = computeNextGen(this.state.cellMatrix);
+    var genCount = this.state.generation;
+    if ( newGen.changed ) {
+      // board normally evolving
+      this.setState({
+        generation: ++genCount,
+        cellMatrix: newGen.matrix
+      });
+    } else {
+      // board is unchanged
+      this.stop();
+    }
   },
   componentDidMount: function () {
-    this.timer = setInterval(this.nextGen, 500);
+    this.timer = setInterval(this.nextGen, this.props.timeout);
   },
   start: function () {
     if (!this.state.running) {
-      this.timer = setInterval(this.nextGen,500);
-      this.setState({running: true});
+      this.timer = setInterval(this.nextGen,this.props.timeout);
+      if (diffMatrix(this.state.cellMatrix, this.oldMatrix)) {
+        this.setState({generation:0, running: true});
+        this.dirty = undefined;
+      }
+      else
+        this.setState({running: true});
+      this.oldMatrix = undefined;
     }
   },
   stop: function () {
     if (this.state.running) {
       clearInterval(this.timer);
+      this.oldMatrix = cloneMatrix(this.state.cellMatrix);
       this.timer = undefined;
       this.setState({running: false});
     }
@@ -171,6 +218,7 @@ var GameApp = React.createClass({
         <h1>The Game of Life</h1>
         <div className="board-panel">
           <Board
+            running={this.state.running}
             boardMatrix={this.state.cellMatrix}
             clickCb={this.editCell}
           />
@@ -193,7 +241,6 @@ ReactDOM.render(<GameApp/>, document.getElementById('app'));
 
 *****************************************************************************/
 /**** COMPILED JS ES5 (Babel) ***********************************************/
-
 'use strict';
 
 var randomBoard = function randomBoard(rows, cols) {
@@ -206,6 +253,23 @@ var randomBoard = function randomBoard(rows, cols) {
     matrix.push(row);
   }
   return matrix;
+};
+
+var cloneMatrix = function cloneMatrix(m) {
+  var mOut = [];
+  m.forEach(function (arr) {
+    mOut.push(arr.slice(0));
+  });
+  return mOut;
+};
+
+var diffMatrix = function diffMatrix(m1, m2) {
+  for (var i = 0; i < m1.length; i++) {
+    for (var j = 0; j < m1[0].length; j++) {
+      if ((m1[i][j] > 0 || m2[i][j] > 0) && !(m1[i][j] > 0 && m2[i][j]) > 0) return true;
+    }
+  }
+  return false;
 };
 
 var emptyBoard = function emptyBoard(rows, cols) {
@@ -223,18 +287,16 @@ var emptyBoard = function emptyBoard(rows, cols) {
 var aliveCount = function aliveCount(i, j, matrix) {
   // count the living cells around
   var count = 0;
-  var rmin = -1,
-      rmax = 1,
-      cmin = -1,
-      cmax = 1;
-  if (i === 0) rmin = 0;else if (i === matrix.length - 1) rmax = 0;
-  if (j === 0) cmin = 0;else if (j === matrix[0].length - 1) cmax = 0;
-
-  for (var k = rmin; k <= rmax; k++) {
-    for (var l = cmin; l <= cmax; l++) {
+  // Periodic Boundaries
+  var rInd = [-1, 0, 1],
+      cInd = [-1, 0, 1];
+  if (i === 0) rInd[0] = matrix.length - 1;else if (i === matrix.length - 1) rInd[2] = -i;
+  if (j === 0) cInd[0] = matrix[0].length - 1;else if (j === matrix[0].length - 1) cInd[2] = -j;
+  rInd.forEach(function (k) {
+    cInd.forEach(function (l) {
       if (!(k === 0 && l === 0)) if (matrix[i + k][j + l]) count++;
-    }
-  }
+    });
+  });
   return count;
 };
 
@@ -242,6 +304,7 @@ var computeNextGen = function computeNextGen(matrix) {
   var newMatrix = [];
   var rows = matrix.length;
   var cols = matrix[0].length;
+  var unchanged = true;
   for (var i = 0; i < rows; i++) {
     var row = [];
     for (var j = 0; j < cols; j++) {
@@ -255,11 +318,15 @@ var computeNextGen = function computeNextGen(matrix) {
       } else {
         if (count === 3) newCell = 1;
       }
+      if (newCell - matrix[i][j] !== 0) unchanged = false;
       row.push(newCell);
     }
     newMatrix.push(row);
   }
-  return newMatrix;
+  return {
+    matrix: newMatrix,
+    changed: !unchanged
+  };
 };
 
 var CellRow = React.createClass({
@@ -272,6 +339,7 @@ var CellRow = React.createClass({
   render: function render() {
     var rowCells = this.props.rowArray.map((function (el, ind) {
       var cellClasses = (el ? el === 1 ? 'young' : 'old' : '') + ' cell';
+      cellClasses += this.props.running ? '' : ' clickable';
       return React.createElement('div', { className: cellClasses, onClick: this.click.bind(null, ind) });
     }).bind(this));
     return React.createElement(
@@ -287,7 +355,12 @@ var Board = React.createClass({
 
   render: function render() {
     var rows = this.props.boardMatrix.map((function (el, ind) {
-      return React.createElement(CellRow, { rowArray: el, row: ind, clickCb: this.props.clickCb });
+      return React.createElement(CellRow, {
+        rowArray: el,
+        row: ind,
+        clickCb: this.props.clickCb,
+        running: this.props.running
+      });
     }).bind(this));
     return React.createElement(
       'div',
@@ -303,7 +376,8 @@ var GameApp = React.createClass({
   getDefaultProps: function getDefaultProps() {
     return {
       rows: 20,
-      cols: 30
+      cols: 30,
+      timeout: 500
     };
   },
   getInitialState: function getInitialState() {
@@ -315,30 +389,43 @@ var GameApp = React.createClass({
     };
   },
   editCell: function editCell(row, col) {
-    var boardState = this.state.cellMatrix;
-    boardState[row][col] = boardState[row][col] ? 0 : 1;
-    this.setState({ cellMatrix: boardState });
+    if (!this.state.running) {
+      var boardState = this.state.cellMatrix;
+      boardState[row][col] = boardState[row][col] ? 0 : 1;
+      this.setState({ cellMatrix: boardState });
+    }
   },
   nextGen: function nextGen() {
-    var newMatrix = computeNextGen(this.state.cellMatrix);
-    var gen = this.state.generation;
-    this.setState({
-      generation: ++gen,
-      cellMatrix: newMatrix
-    });
+    var newGen = computeNextGen(this.state.cellMatrix);
+    var genCount = this.state.generation;
+    if (newGen.changed) {
+      // board normally evolving
+      this.setState({
+        generation: ++genCount,
+        cellMatrix: newGen.matrix
+      });
+    } else {
+      // board is unchanged
+      this.stop();
+    }
   },
   componentDidMount: function componentDidMount() {
-    this.timer = setInterval(this.nextGen, 500);
+    this.timer = setInterval(this.nextGen, this.props.timeout);
   },
   start: function start() {
     if (!this.state.running) {
-      this.timer = setInterval(this.nextGen, 500);
-      this.setState({ running: true });
+      this.timer = setInterval(this.nextGen, this.props.timeout);
+      if (diffMatrix(this.state.cellMatrix, this.oldMatrix)) {
+        this.setState({ generation: 0, running: true });
+        this.dirty = undefined;
+      } else this.setState({ running: true });
+      this.oldMatrix = undefined;
     }
   },
   stop: function stop() {
     if (this.state.running) {
       clearInterval(this.timer);
+      this.oldMatrix = cloneMatrix(this.state.cellMatrix);
       this.timer = undefined;
       this.setState({ running: false });
     }
@@ -372,6 +459,7 @@ var GameApp = React.createClass({
         'div',
         { className: 'board-panel' },
         React.createElement(Board, {
+          running: this.state.running,
           boardMatrix: this.state.cellMatrix,
           clickCb: this.editCell
         }),
