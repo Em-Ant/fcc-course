@@ -1,0 +1,180 @@
+
+/********************************************************************
+*   SCSS
+*****************************************
+
+$clean : #3498DB;
+$doping : #EF4836;
+
+$ptsborder: #999;
+
+$outerwidth: 850px;
+$outerheight: 600px;
+
+body {
+  font-family: sans;
+  background-image: url('http://emant.altervista.org/ext/ad.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+}
+
+h1 {
+  text-align: center;
+  color: #f6f6f6;
+  font-size: 2em;
+  padding : 30px 0;
+  text-shadow: 2px 2px 3px rgba(30,30,30,0.5);
+  line-height: 1.2em;
+  small {
+    font-size: 0.7em;
+    color: darken(#f6f6f6, 20%);
+    a {
+      color: #F5D76E;
+      text-decoration: none;
+      transition: color 0.2s;
+      &:hover {
+        color: #E67E22;
+      }
+    }
+  }
+}
+
+.axis path,
+.axis line {
+fill: none;
+stroke: #999;
+shape-rendering: crispEdges;
+}
+
+text.labels {
+  font-size: 11px;
+  fill: black;
+}
+.datapoints {
+  fill: $clean;
+  stroke: $ptsborder;
+}
+.doping {
+  fill: $doping;
+}
+
+svg {
+  background-color: #f6f6f6;
+  opacity: 0.8;
+  position: relative;
+  left: 50%;
+  margin-left: -$outerwidth/2;
+  box-shadow: 4px 4px 10px rgba(20, 20, 20, 0.5);
+}
+
+#tooltip{
+  text-align: center;
+  width: 230px;
+  font-size: 13px;
+  background-color: darken(#6C7A89, 20%);
+  opacity: 0;
+  box-shadow: 2px 2px 5px rgba(30,30,30,0.5);
+  padding: 5px 10px;
+  border-radius: 10px;
+  color: #f6f6f6;
+  position: absolute;
+  transition: opacity 0.2s;
+  left: 53%;
+  top: $outerheight/2 + 150px;
+  z-index: 10;
+  p {
+    margin: 10px auto;
+    line-height: 20px;
+  }
+}
+
+.labels.info {
+  fill: #444;
+}
+
+********************************************************************/
+
+body {
+  font-family: sans;
+  background-image: url("http://emant.altervista.org/ext/ad.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+}
+
+h1 {
+  text-align: center;
+  color: #f6f6f6;
+  font-size: 2em;
+  padding: 30px 0;
+  text-shadow: 2px 2px 3px rgba(30, 30, 30, 0.5);
+  line-height: 1.2em;
+}
+h1 small {
+  font-size: 0.7em;
+  color: #c3c3c3;
+}
+h1 small a {
+  color: #F5D76E;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+h1 small a:hover {
+  color: #E67E22;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #999;
+  shape-rendering: crispEdges;
+}
+
+text.labels {
+  font-size: 11px;
+  fill: black;
+}
+
+.datapoints {
+  fill: #3498DB;
+  stroke: #999;
+}
+
+.doping {
+  fill: #EF4836;
+}
+
+svg {
+  background-color: #f6f6f6;
+  opacity: 0.8;
+  position: relative;
+  left: 50%;
+  margin-left: -425px;
+  box-shadow: 4px 4px 10px rgba(20, 20, 20, 0.5);
+}
+
+#tooltip {
+  text-align: center;
+  width: 230px;
+  font-size: 13px;
+  background-color: #3f4750;
+  opacity: 0;
+  box-shadow: 2px 2px 5px rgba(30, 30, 30, 0.5);
+  padding: 5px 10px;
+  border-radius: 10px;
+  color: #f6f6f6;
+  position: absolute;
+  transition: opacity 0.2s;
+  left: 53%;
+  top: 450px;
+  z-index: 10;
+}
+#tooltip p {
+  margin: 10px auto;
+  line-height: 20px;
+}
+
+.labels.info {
+  fill: #444;
+}
