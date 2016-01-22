@@ -1,0 +1,159 @@
+
+/************************************************
+*   SCSS
+*************************************************
+$barcolor: #5C97BF;
+$svgbg: #f6f6f6;
+$barhover: lighten($barcolor, 20%);
+$text: #222;
+
+body {
+  background-image: url('http://cdn.backgroundhost.com/backgrounds/subtlepatterns/graphy.png');
+  font-family: sans;
+}
+
+p {
+  margin: 10px auto;
+}
+#tip {
+  background-color: #eee;
+  opacity: 0;
+  width: 160px;
+  padding: 0px 20px;
+  border-radius: 10px;
+  pointer-events: none;
+  position: absolute;
+  transition: opacity 0.2s;
+  box-shadow: 2px 2px 6px rgba(30,30,30,0.5);
+  #GDP {
+    font-weight: bold;
+  }
+}
+
+.outer {
+  fill: none;
+  stroke: none;
+}
+
+.databars {
+  fill: $barcolor;
+}
+
+.axis path,
+.axis line {
+fill: none;
+stroke: #999;
+shape-rendering: crispEdges;
+}
+
+text {
+    fill: $text;
+}
+
+.axis text {
+  font-family: sans-serif;
+  font-size: 15px;
+}
+
+
+.title {
+  font-size: 30px;
+  fill: $barcolor;
+}
+svg {
+  box-shadow: 2px 2px 8px #888;
+  background-color: $svgbg;
+  position: relative;
+  left: 50%;
+  margin-left: -400px;
+}
+
+#plot {
+  padding-top: 60px;
+}
+
+rect:hover {
+  fill: $barhover;
+}
+
+.note {
+  fill: $barcolor;
+  font-size: 10px
+}
+
+************************************************/
+
+body {
+  background-image: url("http://cdn.backgroundhost.com/backgrounds/subtlepatterns/graphy.png");
+  font-family: sans;
+}
+
+p {
+  margin: 10px auto;
+}
+
+#tip {
+  background-color: #eee;
+  opacity: 0;
+  width: 160px;
+  padding: 0px 20px;
+  border-radius: 10px;
+  pointer-events: none;
+  position: absolute;
+  transition: opacity 0.2s;
+  box-shadow: 2px 2px 6px rgba(30, 30, 30, 0.5);
+}
+#tip #GDP {
+  font-weight: bold;
+}
+
+.outer {
+  fill: none;
+  stroke: none;
+}
+
+.databars {
+  fill: #5C97BF;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #999;
+  shape-rendering: crispEdges;
+}
+
+text {
+  fill: #222;
+}
+
+.axis text {
+  font-family: sans-serif;
+  font-size: 15px;
+}
+
+.title {
+  font-size: 30px;
+  fill: #5C97BF;
+}
+
+svg {
+  box-shadow: 2px 2px 8px #888;
+  background-color: #f6f6f6;
+  position: relative;
+  left: 50%;
+  margin-left: -400px;
+}
+
+#plot {
+  padding-top: 60px;
+}
+
+rect:hover {
+  fill: #a5c6dc;
+}
+
+.note {
+  fill: #5C97BF;
+  font-size: 10px;
+}
