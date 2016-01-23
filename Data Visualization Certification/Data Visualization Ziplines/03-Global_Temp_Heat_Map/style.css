@@ -1,0 +1,146 @@
+
+/************************************************
+*   SCSS
+*************************************************
+$bg: #e3e3e3;
+$shadow: rgba(30, 30, 30, 0.6);
+$fill: #222;
+$info: #666;
+
+body {
+  font-family: sans;
+  background-color: $bg;
+  color: #222;
+  font-size: 11px;
+  fill: $fill;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #666;
+  shape-rendering: crispEdges;
+}
+
+
+svg {
+  background-color: white;
+  box-shadow: 4px 4px 8px $shadow;
+  position: relative;
+  left: 50%;
+  margin-left: -600px;
+  rect {
+    cursor: pointer;
+  }
+}
+
+#graph {
+  padding-top: 70px;
+}
+
+text.axislabels {
+  fill: #333;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+text.title {
+  font-size: 28px;
+  fill: #333;
+}
+
+text.title.small {
+  font-size: 23px;
+  fill: #666;
+}
+
+text.info {
+  fill: $info;
+}
+
+#tooltip {
+  position: absolute;
+  background-color: #222;
+  opacity: 0;
+  color: #f6f6f6;
+  padding: 15px;
+  font-size: 13px;
+  text-align: center;
+  transition: opacity 0.2s;
+  pointer-events: none;
+  p {
+    line-height: 20px;
+  }
+  #date {
+    font-weight: bold;
+  }
+}
+
+************************************************/
+body {
+  font-family: sans;
+  background-color: #e3e3e3;
+  color: #222;
+  font-size: 11px;
+  fill: #222;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #666;
+  shape-rendering: crispEdges;
+}
+
+svg {
+  background-color: white;
+  box-shadow: 4px 4px 8px rgba(30, 30, 30, 0.6);
+  position: relative;
+  left: 50%;
+  margin-left: -600px;
+}
+svg rect {
+  cursor: pointer;
+}
+
+#graph {
+  padding-top: 70px;
+}
+
+text.axislabels {
+  fill: #333;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+text.title {
+  font-size: 28px;
+  fill: #333;
+}
+
+text.title.small {
+  font-size: 23px;
+  fill: #666;
+}
+
+text.info {
+  fill: #666;
+}
+
+#tooltip {
+  position: absolute;
+  background-color: #222;
+  opacity: 0;
+  color: #f6f6f6;
+  padding: 15px;
+  font-size: 13px;
+  text-align: center;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+#tooltip p {
+  line-height: 20px;
+}
+#tooltip #date {
+  font-weight: bold;
+}
