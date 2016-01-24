@@ -57,6 +57,7 @@ body {
 .node {
   stroke: #666;
   stroke-width: 1.5px;
+  cursor: pointer;
 }
 
 .link {
@@ -66,7 +67,7 @@ body {
 
 svg {
   box-shadow: 4px 4px 10px rgba(30, 30, 30, 0.7);
-  background-color: #fcf3d4;
+  background-color: #f6f6f6 /* #fcf3d4 */;
   position: relative;
   left: 50%;
   margin-left: -400px;
@@ -89,4 +90,13 @@ svg {
 
 p {
   padding: 2px ;
+}
+
+text.legend {
+  fill: #222;
+  font-size: 14px;
+}
+
+image {
+  z-index: 10;
 }

@@ -11,8 +11,21 @@ User Stories :
 ************************************************/
 
 
-
+/** GLOBALS *********************************/
 var dataUrl = 'http://www.freecodecamp.com/news/hot';
+
+// SETUP
+var width = 780,
+    height = 780;
+
+var repulsion = -120;
+var linkLength = 90;
+
+var dimFactor = 8.5;
+
+var legendPos = {'right' : 120, 'bottom' : 35}
+
+/**********************************************/
 
 var buildGraph = function (data) {
   var graph = {
@@ -67,9 +80,7 @@ var buildGraph = function (data) {
   return graph;
 };
 
-// SETUP
-var width = 800,
-    height = 800;
+
 
 
 var draw = function(graph) {
@@ -78,8 +89,8 @@ var draw = function(graph) {
   var maxDomainCount = d3.max(graph.nodes, function(d) {return d.isUser ? 0 : d.count})
 
   var force = d3.layout.force()
-      .charge(-120)
-      .linkDistance(80)
+      .charge(repulsion)
+      .linkDistance(linkLength)
       .size([width, height]);
 
   var svg = d3.select("#graph").append("svg")
@@ -99,22 +110,32 @@ var draw = function(graph) {
   var node = svg.selectAll(".node")
       .data(graph.nodes)
     .enter().append("g")
-      .attr("class", "node")
+      .attr("class", function(d) { return d.isUser ? 'node user' : 'node domain'})
       .call(force.drag);
 
-      node.append('circle')
+  var domainNode = d3.selectAll('.node.domain')
+        .append('circle')
         .attr({
-          "class": "node",
-          "r" : function (d) {return Math.sqrt(50*d.count)},
-          "fill" : function(d) {return d.isUser ? "#E74C3C" : '#6BB9F0' }
+          "r": function (d) {return Math.sqrt(50*d.count)},
+          "fill" :  '#6BB9F0'
         })
+
+var userNode = d3.selectAll('.node.user')
+      .append('rect')
+      .attr({
+        "x": function (d) {return -0.88*dimFactor*Math.sqrt(d.count)},
+        'y': function(d) {return -0.88*dimFactor*Math.sqrt(d.count) },
+        'height':  function(d) {return 0.88*dimFactor*2*Math.sqrt(d.count) },
+        'width':  function(d) {return 0.88*dimFactor*2*Math.sqrt(d.count) },
+        'fill': '#E74C3C'
+      })
 
     node.append("image")
         .attr("xlink:href", function(d) {return d.picture})
-        .attr("x", -14)
-        .attr("y", -14)
-        .attr("width", 28)
-        .attr("height", 28);
+        .attr("x", -10)
+        .attr("y", -10)
+        .attr("width", 20)
+        .attr("height", 20);
 
   node
     .on("mouseover", function(d) {
@@ -142,6 +163,41 @@ var draw = function(graph) {
 
     node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
   });
+
+  svg.append('circle')
+    .attr({
+      'class': 'legend node',
+      'cx': width - legendPos.right + 8,
+      'cy': height - (legendPos.bottom + 25) + 8,
+      'r': 8,
+      'fill' : '#6BB9F0'
+    });
+
+    svg.append('text')
+      .text('Domain')
+      .attr({
+        'class': 'legend info',
+        'x': width - legendPos.right + 25,
+        'y': height - (legendPos.bottom + 25)+ 12,
+      });
+
+    svg.append('rect')
+      .attr({
+        'class': 'legend node',
+        'x': width - legendPos.right,
+        'y': height - legendPos.bottom,
+        'width': 16,
+        'height': 16,
+        'fill' : '#E74C3C'
+      })
+
+    svg.append('text')
+      .text('User')
+      .attr({
+        'class': 'legend info',
+        'x': width - legendPos.right + 25,
+        'y': height - legendPos.bottom + 12,
+      });
 };
 
 d3.json(dataUrl, function(err,json) {
