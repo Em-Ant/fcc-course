@@ -1,0 +1,62 @@
+
+body {
+  background-color: #DADFE1;
+  font-family: sans-serif;
+}
+
+.hits {
+  opacity: 0.7;
+  stroke: #666;
+  cursor: pointer;
+}
+
+svg {
+  box-shadow: 5px 5px 10px rgba(30, 30, 30, 0.6);
+  position: relative;
+  left: 50%;
+  margin-left: -550px
+}
+
+#container {
+  padding-top: 15px;
+}
+
+#tooltip {
+  background-color: #222;
+  opacity: 0;
+  color: #f6f6f6;
+  width: 200px;
+  padding: 10px;
+  border-radius: 5px;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 0.2s;
+  cursor: pointer;
+  box-shadow: 2px 2px 6px rgba(30,30,30,0.5);
+}
+
+#tooltip p {
+  padding: 3px;
+}
+
+#reset {
+  cursor: pointer;
+  position: absolute;
+  width: 100px;
+  text-align: center;
+  right: 40px;
+  background-color: rgba(240, 240, 240, 0.5);
+  top: 25px;
+  color: #555;
+  border: 2px solid #555;
+  padding: 10px;
+  border-radius: 5px;
+  transition: all 0.2s;
+}
+
+#reset:hover {
+  color: #E74C3C;
+  border-color: #E74C3C;
+}

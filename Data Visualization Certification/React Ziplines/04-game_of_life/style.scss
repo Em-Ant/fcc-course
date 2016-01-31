@@ -1,0 +1,138 @@
+@import url(https://fonts.googleapis.com/css?family=Comfortaa)
+
+// Disable User Selection
+*
+  -webkit-user-select: none /* Chrome/Safari */
+  -moz-user-select: none /* Firefox */
+  -ms-user-select: none /* IE10+ */
+
+  /* Rules below not implemented in browsers yet */
+  -o-user-select: none
+  user-select: none
+
+
+// COLORS
+$bodybg: desaturate(#89C4F4, 20%)
+$deadcellbg: #333
+$youngcellbg: #F4D03F
+$oldcellbg: #F89406
+$cellborder: $bodybg
+
+$textandborders: darken($deadcellbg, 10%)
+
+// DIMENSIONS
+$rows: 20
+$cols: 30
+$cellside: 18px
+
+$boardwidth: $cellside * $cols
+$boardheight: $cellside * $rows
+
+=cellhover ($col)
+  cursor: pointer
+  &:hover
+    background-color: lighten($col, 25%)
+
+body
+  background-color: $bodybg
+  font-family: "Comfortaa", sans
+  color: $textandborders
+
+.board
+  height: $boardheight
+  width: $boardwidth
+  position: relative
+  margin: auto
+
+.board-panel
+  position: relative
+  top: 25px
+
+.display-panel
+  width: $boardwidth + 60px
+  height: $boardheight + 220px
+  border: 1px solid
+  position: relative
+  margin: auto
+  border-radius: 30px
+  top: 40px
+  h1
+    font-size: 28px
+    text-align: center
+    padding-top: 20px
+
+.cell
+  display: inline-block
+  height: $cellside - 2px
+  width: $cellside - 2px
+  background-color: $deadcellbg
+  border: 1px solid $cellborder
+  border-radius: 15%
+  transition: background-color 0.1s
+
+.cell.clickable
+  +cellhover($deadcellbg)
+
+.young
+  background-color: $youngcellbg
+
+.young.clickable
+  +cellhover($youngcellbg)
+
+.old
+  background-color: $oldcellbg
+
+.old.clickable
+  +cellhover($oldcellbg)
+
+.boardrow
+  height: $cellside
+
+.button-panel
+  width: 420px
+  position: relative
+  margin: auto
+  top: 20px
+
+.btn
+  height: 18px
+  width: 98px
+  font-size: 20px
+  border: 1px solid
+  text-align: center
+  padding: 10px
+  border-radius: 10px
+  display: inline-block
+  margin: 10px
+  cursor: pointer
+  transition: background-color 0.1s
+  &:hover
+    background-color: lighten($bodybg, 10%)
+  &:active
+    background-color: lighten($bodybg, 20%)
+
+.out
+  text-align: center
+  padding-top: 20px
+
+
+/* Scaling for Mobile */
+@media screen and (max-width: 600px)
+
+  .display-panel
+    top: 40px
+
+    -moz-transform: scale(0.55)
+    -ms-transform: scale(0.55)
+    -o-transform: scale(0.55)
+    -webkit-transform: scale(0.55)
+    transform: scale(0.55)
+
+    -o-transform-origin: 0 0
+    -ms-transform-origin: 0 0
+    -webkit-transform-origin: 0 0
+    -moz-transform-origin: 0 0
+    transform-origin: 0 0
+
+    left: 50%
+    margin-left: -166px

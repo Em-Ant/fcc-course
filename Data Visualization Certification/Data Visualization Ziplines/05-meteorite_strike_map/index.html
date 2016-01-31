@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Meteorite Strike Map</title>
+  <script type="text/javascript" src="http://d3js.org/d3.v3.js"></script>
+  <script type="text/javascript" src="http://d3js.org/topojson.v1.min.js"></script>
+  <script type="text/javascript" src="./d3.js"></script>
+	<script type="text/javascript" src="./topojson.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+	<link rel="stylesheet" href="./style.css">
+</head>
+<body >
+
+  <!-- MAP CONTAINER -->
+  <div id="container"></div>
+
+  <div id="reset">RESET</div>
+
+  <div id="tooltip">
+    <p>
+      Id: <span id="m_id"></span>
+    </p>
+    <p>
+      Name: <span id="name"></span>
+    </p>
+    <p>
+      Mass: <span id="mass"></span> kg
+    </p>
+    <p>
+      Class: <span id="cat"></span>
+    </p>
+    <p>
+      Lon: <span id="lon"></span>
+    </p>
+    <p>
+      Lat: <span id="lat"></span>
+    </p>
+    <p>
+      Year: <span id="year"></span>
+    </p>
+  </div>
+
+  <script type="text/javascript" src="./app.js"></script>
+</body>
+</html>
