@@ -1,0 +1,122 @@
+
+
+$dark-color: #14171A;
+$wall-color: lighten($dark-color, 10%);
+$empty-color: #ABB7B7;
+$player-color: blue;
+$enemy-color: red;
+$health-color: green;
+$weapon-color: yellow;
+$dead-color : #555;
+$boss-color: purple;
+
+$cell-dim : 14px;
+
+$term-head: #4f73a9;
+$term-grey: #ccc;
+
+body {
+  background: url("http://cdn.backgroundhost.com/backgrounds/subtlepatterns/diagmonds.png");
+}
+
+@mixin top-radius($r) {
+  border-top-left-radius: $r;
+  border-top-right-radius: $r;
+}
+
+#view {
+  padding-top: 80px;
+}
+
+#app {
+  width: 55*14px + 8px;
+  font-family: 'Courier New', monospace;
+  position: relative;
+  margin: auto;
+  border: 1px solid $term-head;
+  box-shadow: 0px 0px 8px rgba(150,150,150, 0.5);
+  @include top-radius(6px);
+  #head {
+    text-align: center;
+    position: relative;
+    background-color: $term-head;
+    padding: 4px;
+    margin: 0;
+    font-size: 15px;
+    color: #f6f6f6;
+    @include top-radius(2px);
+    #icon {
+      position: absolute;
+      left: 8px;
+      top: 3px;
+      padding : 3px;
+      font-size: 10px;
+      background-color: #222;
+      border-radius: 2px;
+    }
+    #winfn {
+      right: 10px;
+      top: 2px;
+      position: absolute;
+      padding : 3px;
+      font-size: 12px;
+    }
+  }
+  #appbody {
+    padding: 19px 4px 4px 4px;
+    background-color: $term-grey;
+    #info {
+      padding: 10px;
+      font-size: 14px;
+      background-color: $dark-color;
+      color: $empty-color;
+      p {
+        padding: 4px 0;
+      }
+    }
+  }
+}
+.game-row {
+  margin: 0;
+  padding: 0;
+  height: $cell-dim;
+  text-align: center;
+}
+
+.game-cell {
+  height: $cell-dim;
+  width: $cell-dim;
+  background-color: $wall-color;
+  display: inline-block;
+  text-align: center;
+}
+
+.enemy {
+  background-color: $enemy-color;
+}
+
+.health {
+  background-color: $health-color;
+}
+
+.weapon {
+  background-color: $weapon-color;
+}
+
+.player {
+  background-color: $player-color;
+}
+
+.player.dead {
+  background-color: $dead-color;
+}
+.empty {
+  background-color: $empty-color;
+}
+
+.boss {
+  background-color: $boss-color;
+}
+.hidden {
+  background-color: $dark-color;
+}

@@ -1,0 +1,86 @@
+body {
+  background: url("http://cdn.backgroundhost.com/backgrounds/subtlepatterns/diagmonds.png");}
+
+#view {
+  padding-top: 80px; }
+
+#app {
+  width: 778px;
+  font-family: 'Courier New', monospace;
+  position: relative;
+  margin: auto;
+  border: 1px solid #4f73a9;
+  box-shadow: 0px 0px 8px rgba(150, 150, 150, 0.5);
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px; }
+  #app #head {
+    text-align: center;
+    position: relative;
+    background-color: #4f73a9;
+    padding: 4px;
+    margin: 0;
+    font-size: 15px;
+    color: #f6f6f6;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px; }
+    #app #head #icon {
+      position: absolute;
+      left: 8px;
+      top: 3px;
+      padding: 3px;
+      font-size: 10px;
+      background-color: #222;
+      border-radius: 2px; }
+    #app #head #winfn {
+      right: 10px;
+      top: 2px;
+      position: absolute;
+      padding: 3px;
+      font-size: 12px; }
+  #app #appbody {
+    padding: 19px 4px 4px 4px;
+    background-color: #ccc; }
+    #app #appbody #info {
+      padding: 10px;
+      font-size: 14px;
+      background-color: #14171A;
+      color: #ABB7B7; }
+      #app #appbody #info p {
+        padding: 4px 0; }
+
+.game-row {
+  margin: 0;
+  padding: 0;
+  height: 14px;
+  text-align: center; }
+
+.game-cell {
+  height: 14px;
+  width: 14px;
+  background-color: #2a3137;
+  display: inline-block;
+  text-align: center; }
+
+.enemy {
+  background-color: red; }
+
+.health {
+  background-color: green; }
+
+.weapon {
+  background-color: yellow; }
+
+.player {
+  background-color: blue; }
+
+.player.dead {
+  background-color: #555; }
+
+.empty {
+  background-color: #ABB7B7; }
+
+.boss {
+  background-color: purple; }
+
+.hidden {
+  background-color: #14171A; }
