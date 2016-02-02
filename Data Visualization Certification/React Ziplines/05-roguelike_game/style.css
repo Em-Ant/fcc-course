@@ -1,5 +1,5 @@
 body {
-  background: url("http://cdn.backgroundhost.com/backgrounds/subtlepatterns/diagmonds.png");}
+  background: url("http://cdn.backgroundhost.com/backgrounds/subtlepatterns/diagmonds.png"); }
 
 #view {
   padding-top: 80px; }
@@ -33,10 +33,10 @@ body {
       border-radius: 2px; }
     #app #head #winfn {
       right: 10px;
-      top: 2px;
+      top: 0px;
       position: absolute;
       padding: 3px;
-      font-size: 12px; }
+      font-size: 16px; }
   #app #appbody {
     padding: 19px 4px 4px 4px;
     background-color: #ccc; }

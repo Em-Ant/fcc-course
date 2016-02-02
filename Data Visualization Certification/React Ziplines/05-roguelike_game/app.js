@@ -445,7 +445,7 @@ var App = React.createClass({
           <div id="head">
             <p id='icon'>>_</p>
             <p>terminal - em-ant@fcc: ~/the_dungeon_quest</p>
-            <p id='winfn'>= [] X</p>
+            <p id='winfn'>&#9472; &#9633; &#10005;</p>
           </div>
           <div id="appbody">
             <GameDisplay matrix={this.state.inSight} dark={this.state.dMode ? 'true' : 'false'}/>
