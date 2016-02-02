@@ -306,12 +306,12 @@ var App = React.createClass({
     },
     initGame: function() {
       var floorMap = this.gameStatus.matrix = DungeonGenerator.generate({
-        maxRoomSize: 11,
-        minRoomSize: 11,
-        rooms: 30,
+        maxRoomSize: 9,
+        minRoomSize: 9,
+        rooms: 35,
         padding: 2,
-        rows: 151,
-        cols: 151,
+        rows: 101,
+        cols: 101,
       });
 
       this.gameStatus.displayWindow = {
