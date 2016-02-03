@@ -5,12 +5,12 @@ This is a local copy of my solutions to the problems for the [freeCodeCamp](http
 
 **I have completed this Certification** so these solutions are to be considered stable.
 
-The basic *Waypoints* are not stored here, You can find them on my FCC [profile](http://www.freecodecamp.com/em-ant).
+The basic challenges are not stored here, You can find them on my FCC [profile](http://www.freecodecamp.com/em-ant).
 
-All the Interactive Projects (*Ziplines*) are also published on my [Codepen](http://codepen.io/Em-Ant/).
+All the Interactive Projects are also published on my [Codepen](http://codepen.io/Em-Ant/).
 
 
-The external libraries needed for almost every *Zipline* are :
+The external libraries needed for almost every Project are :
 
 * [Bootstrap](http://getbootstrap.com/)
 * [jQuery](https://jquery.com/)
