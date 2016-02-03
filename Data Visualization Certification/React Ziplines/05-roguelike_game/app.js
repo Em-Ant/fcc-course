@@ -305,14 +305,8 @@ var App = React.createClass({
       }
     },
     initGame: function() {
-      var floorMap = this.gameStatus.matrix = DungeonGenerator.generate({
-        maxRoomSize: 9,
-        minRoomSize: 9,
-        rooms: 35,
-        padding: 2,
-        rows: 101,
-        cols: 101,
-      });
+      var floorMap = this.gameStatus.matrix
+        = DungeonGenerator.generate(this.props.mapConfigObj);
 
       this.gameStatus.displayWindow = {
         row: 0,
@@ -439,6 +433,20 @@ var App = React.createClass({
     getInitialState: function() {
       return this.initGame();
     },
+    getDefaultProps : function () {
+      return {
+        dWidth: 55,
+        dHeight: 27,
+        mapConfigObj: {
+          maxRoomSize: 9,
+          minRoomSize: 9,
+          rooms: 35,
+          padding: 2,
+          rows: 101,
+          cols: 101,
+        }
+      }
+    },
     render: function () {
       return (
         <div id="app">
@@ -466,4 +474,4 @@ var App = React.createClass({
     }
 });
 
-ReactDOM.render(<App dWidth={55} dHeight={27}/>, document.getElementById('view'));
+ReactDOM.render(<App/>, document.getElementById('view'));
