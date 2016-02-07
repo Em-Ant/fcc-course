@@ -1,5 +1,5 @@
 # freeCodeCamp Challenges for the Front End Development Certification
-### Algorythm and Interactive Projects
+### Algorithm and Interactive Projects
 
 This is a local copy of my solutions to the problems for the [freeCodeCamp](http://www.freecodecamp.com/map) **Front End Development Certification** course.
 
@@ -8,7 +8,6 @@ This is a local copy of my solutions to the problems for the [freeCodeCamp](http
 The basic challenges are not stored here, You can find them on my FCC [profile](http://www.freecodecamp.com/em-ant).
 
 All the Interactive Projects are also published on my [Codepen](http://codepen.io/Em-Ant/).
-
 
 The external libraries needed for almost every Project are :
 

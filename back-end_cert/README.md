@@ -1,5 +1,5 @@
 # freeCodeCamp Challenges for the Back End Development Certification
-### Bonfire, Ziplines and Node.js based tutorials
+### Algorithms, Dynamic Web Apps and Node.js based tutorials
 
 This is a local copy of my solutions to  problems and algorithms (Upper Intermediate and Advanced) for the [freeCodeCamp](http://www.freecodecamp.com/map) **Back End Development Certification**.
 

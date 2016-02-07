@@ -1,5 +1,5 @@
 # freeCodeCamp Challenges for the Data Visualization Certification
-### Algorythm and Interactive Projects
+### Algorithm and Interactive Projects
 
 This is a local copy of my solutions to the problems for the [freeCodeCamp](http://www.freecodecamp.com/map) **Data Visualization Certification** course.
 
