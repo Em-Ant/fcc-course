@@ -31,6 +31,14 @@
  * App link on Heroku : http://vote-plex.herokuapp.com/
  * Github repository : https://github.com/Em-Ant/vote-app
 
-2. **Manage a Book Trading Club** (Under Development)
+2. **Build a Nightlife Coordination App**
+  * App link on Heroku : http://nightzone.herokuapp.com/
+  * Github repository : https://github.com/Em-Ant/fcc-nightzone
+
+3. **Chart the Stock Market**
+  * App link on Heroku : http://stock-chart.herokuapp.com/
+  * Github repository : https://github.com/Em-Ant/fcc-stock-chart
+
+4. **Manage a Book Trading Club** (Under Development)
  * App link on Heroku : http://tbtc.herokuapp.com/
  * Github repository : https://github.com/Em-Ant/book-club
