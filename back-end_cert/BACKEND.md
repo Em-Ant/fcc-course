@@ -39,6 +39,10 @@
   * App link on Heroku : http://stock-chart.herokuapp.com/
   * Github repository : https://github.com/Em-Ant/fcc-stock-chart
 
-4. **Manage a Book Trading Club** (Under Development)
+4. **Manage a Book Trading Club**
  * App link on Heroku : http://tbtc.herokuapp.com/
  * Github repository : https://github.com/Em-Ant/book-club
+
+5. **Build a Pinterest Clone**
+ * App link on Heroku : http://pic-terest.herokuapp.com/
+ * Github repository : https://github.com/Em-Ant/pic-terest
