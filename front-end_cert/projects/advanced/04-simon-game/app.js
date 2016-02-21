@@ -68,7 +68,7 @@ $(document).ready(function(){
       var osc = audioCtx.createOscillator();
       osc.type = 'sine';
       osc.frequency.value = frq;
-      osc.start(0.0); //delay optional parameter is mandatory on Safari 
+      osc.start(0.0); //delay optional parameter is mandatory on Safari
       return osc;
     });
 
@@ -128,6 +128,8 @@ $(document).ready(function(){
     }
 
     function notifyError(pushObj){
+      gameStatus.lock = true;
+      $('.push').removeClass('clickable').addClass('unclickable');
       playErrTone();
       if(pushObj)
         pushObj.addClass('light');
@@ -215,26 +217,28 @@ $(document).ready(function(){
     };
 
     function pushColor(pushObj){
-      clearTimeout(gameStatus.toHndl);
-      var pushNr = pushObj.attr('id');
-      if( pushNr == gameStatus.sequence[gameStatus.index]
-          && gameStatus.index < gameStatus.sequence.length){
+      if(!gameStatus.lock) {
+        clearTimeout(gameStatus.toHndl);
+        var pushNr = pushObj.attr('id');
+        if( pushNr == gameStatus.sequence[gameStatus.index]
+            && gameStatus.index < gameStatus.sequence.length){
 
-        playGoodTone(pushNr);
-        gameStatus.lastPush = pushObj;
-        gameStatus.index++;
-        if(gameStatus.index < gameStatus.sequence.length){
-          gameStatus.toHndl = setTimeout(notifyError,5*gameStatus.timeStep);
-        }else if (gameStatus.index == 20){
-          $('.push').removeClass('clickable').addClass('unclickable');
-          gameStatus.toHndl = setTimeout(notifyWin,gameStatus.timeStep);
+          playGoodTone(pushNr);
+          gameStatus.lastPush = pushObj;
+          gameStatus.index++;
+          if(gameStatus.index < gameStatus.sequence.length){
+            gameStatus.toHndl = setTimeout(notifyError,5*gameStatus.timeStep);
+          }else if (gameStatus.index == 20){
+            $('.push').removeClass('clickable').addClass('unclickable');
+            gameStatus.toHndl = setTimeout(notifyWin,gameStatus.timeStep);
+          }else{
+            $('.push').removeClass('clickable').addClass('unclickable');
+            addStep();
+          }
         }else{
           $('.push').removeClass('clickable').addClass('unclickable');
-          addStep();
+          notifyError(pushObj);
         }
-      }else{
-        $('.push').removeClass('clickable').addClass('unclickable');
-        notifyError(pushObj);
       }
     }
 
