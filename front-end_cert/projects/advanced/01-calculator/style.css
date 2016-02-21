@@ -2,6 +2,7 @@
 
 body {
   font-family: 'Nova Mono', monospace;
+  background: fixed url('./img/debut_light.png');
 }
 
 div,

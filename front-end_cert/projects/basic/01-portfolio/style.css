@@ -1,7 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Share+Tech+Mono);
 
 body{
-  background: fixed url('http://cdn.backgroundhost.com/backgrounds/subtlepatterns/bright_squares.png');
+  background: fixed url('./img/bright_squares.png');
   position:relative;
 }
 
@@ -58,7 +58,7 @@ body{
 
 .cust-caption a{
   color:white;
-  
+
   text-shadow:1px 1px 2px black;
 }
 
@@ -68,9 +68,9 @@ body{
 }
 
 
-.heading{ 
+.heading{
   text-align : center;
-  background: fixed url('./img/starring_b.png');
+  background: fixed url('./img/random_grey_variations.png');
   padding : 10px;
 }
 
@@ -129,7 +129,7 @@ footer{
 	min-height:250px;
 	color:#ccc;
 	font-size:1.5em;
-	background: fixed url('./img/starring_b.png');
+	background: fixed url('./img/random_grey_variations.png');
 }
 
 footer a{
