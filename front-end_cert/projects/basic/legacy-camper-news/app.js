@@ -1,7 +1,16 @@
+/**
+* freeCodeCamp Camper News has been closed. I saved a snapshot of the 
+* last data, in order to keep this legacy project working.
+* Links to discussion maybe inactive.
+*/
+
 $(document).ready(function(){
 
+  var dataUrl = 'https://rawgit.com/Em-Ant/fcc-course/master/front-end_cert/projects/basic/legacy-camper-news/hot_stories.json';
+//var dataUrl = 'https://www.freecodecamp.com/news/hot';
+
   var getData = function(){
-    return $.getJSON('http://www.freecodecamp.com/stories/hotStories',function(data){
+    return $.getJSON(dataUrl,function(data){
       return data;
     });
   };
@@ -18,7 +27,7 @@ $(document).ready(function(){
        $(this).attr('src','https://s3.amazonaws.com/freecodecamp/camper-image-placeholder.png');
     }).attr('src',pict);
     $new_div.append($img);
-    $new_div.append($('<h3 class="headline"></h3>').text(obj.headline.replace(/&amp;/g,'&').replace(/&quot;/g,'\"'))); //fix some special chars
+    $new_div.append($('<h3 class="headline"></h3>').text(obj.headline.replace(/&amp;/g,'&').replace(/&quot;/g,'\"'))); //fix "&" char
     var discussUrl = "http://www.freecodecamp.com/news/" + obj.storyLink.replace(/\s/g,"-");
     if(obj.comments){
       var commStr = obj.comments.length+' comments';

@@ -16,7 +16,7 @@ h3.sub {
   font-size: 3em;
 }
 
-.heading img {
+.heading svg {
   width: 80%;
   max-width: 600px;
 }
@@ -98,10 +98,10 @@ a.element .headline {
   word-wrap: break-word;
 }
 
-a, 
-a:hover, 
-a:focus, 
-a:active, 
+a,
+a:hover,
+a:focus,
+a:active,
 a:visited {
   text-decoration: none;
   outline: 0;

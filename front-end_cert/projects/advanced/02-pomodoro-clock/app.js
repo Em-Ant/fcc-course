@@ -13,33 +13,50 @@ $(document).ready(function(){
     $('.w-time').text(work_min);
   };
 
-  var displayDigits = function(){
-    var secPad = (seconds < 10) ? '0' : '';
-    var minPad = (minutes < 10) ? '0' : '';
-    $('.sec-hand').css('transform','rotate('+secAngle+'deg)');
+  var displayDigitsAndSecs = function(){
+
+    // Update sec hand
     $('.sec-hand').css('-webkit-transform','rotate('+secAngle+'deg)');
     $('.sec-hand').css('-ms-transform','rotate('+secAngle+'deg)');
+    $('.sec-hand').css('transform','rotate('+secAngle+'deg)');
+
+    // Add zero front padding if min and sec are one digit
+    var secPad = (seconds < 10) ? '0' : '';
+    var minPad = (minutes < 10) ? '0' : '';
+
+    // update digital clock
     $('.digit').empty().append($('<h2>'+minPad+minutes+' : '+secPad+seconds+'</h2>'));
   }
 
   var displayClock = function(){
-    if(seconds > 0 ){
-      minAngle = (60-minutes -1)*6 + Math.floor((60-seconds)/10.0);;
-      secAngle = (60-seconds)*6;
+
+    // calc hands angles
+    if(seconds > 0) {
+
+      // +1deg every 10 secs
+      minAngle = (60 - minutes - 1) * 6 + Math.floor((60 - seconds) / 10.0);;
+
+      // +6deg every sec
+      secAngle = (60 - seconds)*6;
     } else {
-      minAngle = (60-minutes)*6;
+      minAngle = (60 - minutes)*6;
       secAngle = 0;
     }
+
+    // rotate min hand
+    $('.min-hand').css('-ms-transform','rotate('+minAngle+'deg)');
     $('.min-hand').css('transform','rotate('+minAngle+'deg)');
     $('.min-hand').css('-webkit-transform','rotate('+minAngle+'deg)');
-    $('.sec-hand').css('-ms-transform','rotate('+secAngle+'deg)');
-    displayDigits();
+
+    // update sec hand and digital display
+    displayDigitsAndSecs();
   };
 
   var switchStatus = function(){
+
     // Switch Graphics
-    $('.po').toggleClass('noshow');
-    $('.cof').toggleClass('noshow');
+    $("#po").toggleClass('noshow');
+    $("#cof").toggleClass('noshow');
     $('.min-hand, .clock-center').toggleClass('grey');
     $('.min-hand, .clock-center').toggleClass('white');
     $('.sec-hand').toggleClass('red');
@@ -69,7 +86,7 @@ $(document).ready(function(){
     $('.'+active).removeClass('orange-border green-border').addClass('green-border');
   };
 
-  var resetFun = function(){
+  var switchAndRestart = function(){
     switchStatus();
     setTimeout(startClock,1000);
   };
@@ -77,8 +94,8 @@ $(document).ready(function(){
   var updateClock = function(){
     if(minutes === 0 && seconds === 0){
         stopClock();
-        resetFun();
-    }else{
+        switchAndRestart();
+    } else {
       if(seconds === 0){
         minutes--;
         seconds = 60;
@@ -126,6 +143,8 @@ $(document).ready(function(){
       return n;
   };
 
+  // On mobile double click zooms !!!!
+  // Add a custom button
   $('.reset').click(resetClock);
 
   $('.btn').click(function(){

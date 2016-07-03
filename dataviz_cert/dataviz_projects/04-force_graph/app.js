@@ -12,7 +12,15 @@ User Stories :
 
 
 /** GLOBALS *********************************/
-var dataUrl = 'http://www.freecodecamp.com/news/hot';
+
+/**
+* freeCodeCamp Camper News has been closed. I saved a snapshot of the
+* last data, in order to keep this legacy project working.
+* Links to discussion maybe inactive.
+*/
+
+// var dataUrl = 'http://www.freecodecamp.com/news/hot';
+var dataUrl = 'https://rawgit.com/Em-Ant/fcc-course/master/front-end_cert/projects/basic/legacy-camper-news/hot_stories.json';
 
 // SETUP
 var width = 780,
