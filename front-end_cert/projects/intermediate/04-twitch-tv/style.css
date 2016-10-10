@@ -84,11 +84,3 @@ body{
   margin-left: auto;
   margin-right:auto;
 }
-
-
-.info {
-  text-align: center;
-  font-family: monospace;
-  padding-top: 5px;
-  margin: 0;
-}
