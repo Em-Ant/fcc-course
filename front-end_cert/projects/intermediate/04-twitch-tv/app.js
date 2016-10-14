@@ -9,7 +9,7 @@ $(document).ready(function(){
    // to have a workaround to that.
   var url = "https://wind-bow.hyperdev.space/twitch-api/"; //"https://api.twitch.tv/kraken/"
   var st = "streams/";
-  var us = "users/";
+  var us = "channels/";
   var cb = '?callback=?';
 
   var filter_online = function(el){
@@ -57,24 +57,24 @@ $(document).ready(function(){
     return $.when.apply(null,promises) ;
   };
 
-    var displayElems = function(obj_array,$where){
-      $where.empty();
-      var $ul = $('<ul class="list-unstyled"></ul>');
-      obj_array.forEach(function(el){
-        if(!el.error){
-      var online = el.stream ? 'fa fa-check-square green' : 'fa fa-exclamation-circle yellow';
-      var logo = el.logo ? el.logo : twitch_b64;
-      var $li = $('<li class="users"><img class="logo" src="'+ logo +'"/></li>');
-      var $div = $('<div class="data"></div>');
-      $div.append('<h4 class="name"><a href="http://www.twitch.tv/' +el.name+ ' " target="_blank">'+el.name+'</a></h4><p class="online"><i class="' + online+'"></i></p>');
-      if(el.stream)
-        $div.append($('<p class="streaming" >'+ el.stream.game +'</p>'));
-     $li.append($div);
-     $ul.append($li);
-        }
-    });
-    $where.append($ul);
-  };
+  var displayElems = function(obj_array,$where){
+    $where.empty();
+    var $ul = $('<ul class="list-unstyled"></ul>');
+    obj_array.forEach(function(el){
+    var online = el.stream ? 'fa fa-check-square green' : ( el.stream === null ? 'fa fa-exclamation-circle yellow' : "fa fa-times-circle red" );
+    var logo = el.logo ? el.logo : twitch_b64;
+    var $li = $('<li class="users"><img class="logo" src="'+ logo +'"/></li>');
+    var $div = $('<div class="data"></div>');
+    $div.append('<h4 class="name"><a href="http://www.twitch.tv/' +el.name+ ' " target="_blank">'+el.name+'</a></h4><p class="online"><i class="' + online+'"></i></p>');
+    if(el.stream)
+      $div.append($('<p class="streaming" >'+ el.stream.game +'</p>'));
+    if(el.error)
+      $div.append($('<p class="streaming" >nonexisting or deleted account</p>'));
+   $li.append($div);
+   $ul.append($li);
+  });
+  $where.append($ul);
+};
 
   function displayErr(){
     $('.pre').hide();

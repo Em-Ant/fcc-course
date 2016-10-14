@@ -55,6 +55,10 @@ body{
   color:#E2B842;
 }
 
+.red{
+  color: #EC644B;
+}
+
 .streaming{
   position: absolute;
   color: #666;
